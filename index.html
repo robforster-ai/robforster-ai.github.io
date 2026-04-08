@@ -1,0 +1,212 @@
+---
+layout: default
+title: "Rob Forster | Enterprise AI Transformation"
+description: "Practitioner writing on enterprise AI transformation and programme delivery."
+---
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 1: HERO
+═══════════════════════════════════════════════════════ -->
+<section class="hero reveal">
+  <div class="container">
+    <p class="hero-eyebrow">Enterprise AI Transformation Lead</p>
+    <h1>Rob Forster</h1>
+    <p class="hero-title">Making enterprise AI programmes actually work.</p>
+    <p class="hero-body">
+      Practitioner writing on AI strategy, programme delivery, and the hard realities of
+      transforming large organisations with AI. 20+ years in the field. No hype — just
+      what works.
+    </p>
+    <div class="hero-ctas">
+      <a href="{{ '/writing' | relative_url }}" class="btn btn-primary">Read the latest</a>
+      <a href="{{ '/use-cases' | relative_url }}" class="btn btn-outline">Explore Use Cases</a>
+    </div>
+    <div class="credential-cards">
+      <div class="credential-card">
+        <strong>20+ Years</strong>
+        <span>Enterprise delivery experience</span>
+      </div>
+      <div class="credential-card">
+        <strong>Multi-Million £</strong>
+        <span>AI programmes led</span>
+      </div>
+      <div class="credential-card">
+        <strong>5 Sectors</strong>
+        <span>Finance, retail, public, telco, energy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 2: FEATURED ARTICLE
+═══════════════════════════════════════════════════════ -->
+{% assign featured = site.posts | where:"featured","true" | first %}
+{% if featured %}
+<section class="section reveal" style="background: var(--warm); border-bottom: 1px solid var(--rule);">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="section-label">Featured</p>
+        <h2>Latest Thinking</h2>
+      </div>
+    </div>
+    <div class="featured-grid">
+      <div class="featured-content">
+        <div class="featured-meta">
+          <span class="tag">{{ featured.category }}</span>
+          <span class="featured-date">{{ featured.date | date: "%B %-d, %Y" }}</span>
+        </div>
+        <h3 style="font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 1rem;">
+          <a href="{{ featured.url | relative_url }}" style="color: var(--ink); transition: color 0.25s ease;">{{ featured.title }}</a>
+        </h3>
+        <p class="featured-excerpt">{{ featured.excerpt }}</p>
+        <p class="featured-read-time">{{ featured.read_time }}</p>
+        <a href="{{ featured.url | relative_url }}" class="btn btn-primary" style="margin-top: 1.5rem;">Read article &rarr;</a>
+      </div>
+      <div class="featured-visual">
+        <div class="featured-visual-placeholder">
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="12" width="48" height="40" rx="3" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="24" x2="48" y2="24" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="32" x2="48" y2="32" stroke="currentColor" stroke-width="2"/>
+            <line x1="16" y1="40" x2="36" y2="40" stroke="currentColor" stroke-width="2"/>
+          </svg>
+          <p style="font-size: 0.75rem; margin-top: 0.5rem;">Article image</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 3: RECENT WRITING
+═══════════════════════════════════════════════════════ -->
+<section class="section reveal">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="section-label">Writing</p>
+        <h2>Recent Articles</h2>
+      </div>
+      <a href="{{ '/writing' | relative_url }}" class="section-link">View all &rarr;</a>
+    </div>
+    <div class="posts-grid">
+      {% for post in site.posts limit:6 %}
+      <article class="post-card">
+        <div class="post-card-meta">
+          <span class="tag">{{ post.category }}</span>
+          <span class="post-card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </div>
+        <h3><a href="{{ post.url | relative_url }}" style="color: var(--ink);">{{ post.title }}</a></h3>
+        <p>{{ post.excerpt }}</p>
+        <a href="{{ post.url | relative_url }}" class="post-card-link">Read &rarr;</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 4: NEWS
+═══════════════════════════════════════════════════════ -->
+<section class="section reveal" style="background: var(--warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="section-label">In the News</p>
+        <h2>What I&rsquo;m Reading</h2>
+      </div>
+      <a href="{{ '/news' | relative_url }}" class="section-link">View all &rarr;</a>
+    </div>
+    <div class="news-grid">
+      {% for item in site.data.news limit:6 %}
+      <a href="{{ item.url }}" target="_blank" rel="noopener noreferrer" class="news-card">
+        <span class="news-card-source">{{ item.source }}</span>
+        <h4>{{ item.title }}</h4>
+        <span class="news-card-date">{{ item.date | date: "%B %-d, %Y" }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 5: USE CASES PREVIEW
+═══════════════════════════════════════════════════════ -->
+<section class="section reveal">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="section-label">Use Cases</p>
+        <h2>Enterprise AI in Practice</h2>
+      </div>
+      <a href="{{ '/use-cases' | relative_url }}" class="section-link">Full library &rarr;</a>
+    </div>
+    <div class="filter-bar" style="margin-bottom: 1.5rem;">
+      <button class="filter-pill active" data-filter-biz="all">All Areas</button>
+      <button class="filter-pill" data-filter-biz="Finance">Finance</button>
+      <button class="filter-pill" data-filter-biz="HR">HR</button>
+      <button class="filter-pill" data-filter-biz="Supply Chain">Supply Chain</button>
+      <button class="filter-pill" data-filter-biz="Customer Service">Customer Service</button>
+      <button class="filter-pill" data-filter-biz="IT">IT</button>
+      <button class="filter-pill" data-filter-biz="Legal">Legal</button>
+    </div>
+    <div class="uc-grid">
+      {% for uc in site.data.use-cases limit:9 %}
+      <div class="uc-card" data-biz="{{ uc.business }}" data-proc="{{ uc.process }}">
+        <div class="uc-card-header">
+          <h4>{{ uc.name }}</h4>
+          <span class="impact-badge {% if uc.impact == 'High' %}impact-high{% else %}impact-medium{% endif %}">
+            {{ uc.impact_label }}
+          </span>
+        </div>
+        <p>{{ uc.description | truncate: 120 }}</p>
+        <div class="uc-tags">
+          <span class="uc-tag">{{ uc.business }}</span>
+          <span class="uc-tag">{{ uc.process }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align: center; margin-top: 2.5rem;">
+      <a href="{{ '/use-cases' | relative_url }}" class="btn btn-outline">View all {{ site.data.use-cases | size }} use cases &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION 6: ABOUT STRIP
+═══════════════════════════════════════════════════════ -->
+<section class="about-strip reveal">
+  <div class="container">
+    <p class="hero-eyebrow" style="color: var(--gold-lt);">About</p>
+    <h2 style="color: #fff; margin-bottom: 1rem;">Enterprise AI, delivered.</h2>
+    <p style="max-width: 56ch; font-size: 1.05rem;">
+      I work with large organisations to make their AI programmes actually land — connecting
+      strategy to technology to the people who have to use it every day.
+    </p>
+    <div class="stats-row">
+      <div class="stat-item">
+        <strong>20+</strong>
+        <span>Years in enterprise delivery</span>
+      </div>
+      <div class="stat-item">
+        <strong>Multi-Million&nbsp;£</strong>
+        <span>AI programmes led</span>
+      </div>
+      <div class="stat-item">
+        <strong>{{ site.posts | size }}</strong>
+        <span>Articles published</span>
+      </div>
+      <div class="stat-item">
+        <strong>5</strong>
+        <span>Sectors served</span>
+      </div>
+    </div>
+    <a href="{{ '/about' | relative_url }}" class="btn btn-outline" style="border-color: rgba(255,255,255,0.3); color: #fff; margin-top: 1rem;">
+      Read my story &rarr;
+    </a>
+  </div>
+</section>

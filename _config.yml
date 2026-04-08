@@ -1,0 +1,14 @@
+title: "Rob Forster | Enterprise AI"
+description: "Practitioner writing on enterprise AI transformation and programme delivery"
+author: "Rob Forster"
+baseurl: ""
+url: "https://robforster-ai.github.io"
+permalink: /:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-seo-tag
+
+paginate: 12
+paginate_path: "/writing/page:num/"

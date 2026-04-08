@@ -1,0 +1,30 @@
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="{{ '/' | relative_url }}" class="nav-logo">Rob <span>Forster</span></a>
+
+    <ul class="nav-links">
+      <li><a href="{{ '/writing' | relative_url }}">Writing</a></li>
+      <li><a href="{{ '/news' | relative_url }}">News</a></li>
+      <li><a href="{{ '/use-cases' | relative_url }}">Use Cases</a></li>
+      <li><a href="{{ '/about' | relative_url }}">About</a></li>
+      <li><a href="{{ '/about#contact' | relative_url }}" class="nav-cta">Connect</a></li>
+    </ul>
+
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile full-screen overlay -->
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <button class="nav-overlay-close" id="navOverlayClose" aria-label="Close menu">&times;</button>
+  <a href="{{ '/' | relative_url }}">Home</a>
+  <a href="{{ '/writing' | relative_url }}">Writing</a>
+  <a href="{{ '/news' | relative_url }}">News</a>
+  <a href="{{ '/use-cases' | relative_url }}">Use Cases</a>
+  <a href="{{ '/about' | relative_url }}">About</a>
+  <a href="{{ '/about#contact' | relative_url }}" class="text-gold">Connect</a>
+</div>

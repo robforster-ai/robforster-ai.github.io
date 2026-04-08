@@ -1,0 +1,76 @@
+---
+layout: default
+title: "Writing"
+description: "Articles on enterprise AI transformation, programme delivery, knowledge management, and AI strategy."
+permalink: /writing/
+---
+
+<main>
+  <div class="container">
+    <div class="archive-header reveal">
+      <p class="section-label">Writing</p>
+      <h1>Articles & Essays</h1>
+      <p class="hero-body" style="margin-top: 0.75rem; margin-bottom: 0;">
+        Practitioner perspectives on enterprise AI transformation and delivery.
+      </p>
+    </div>
+
+    <!-- Category filter pills -->
+    <div class="filter-bar reveal">
+      <button class="filter-pill active" data-filter-cat="all">All</button>
+      <button class="filter-pill" data-filter-cat="Enterprise AI">Enterprise AI</button>
+      <button class="filter-pill" data-filter-cat="Delivery">Delivery</button>
+      <button class="filter-pill" data-filter-cat="Knowledge">Knowledge</button>
+      <button class="filter-pill" data-filter-cat="Governance">Governance</button>
+      <button class="filter-pill" data-filter-cat="AI Strategy">AI Strategy</button>
+      <button class="filter-pill" data-filter-cat="Career">Career</button>
+    </div>
+
+    <!-- Post grid -->
+    <div class="posts-grid reveal" style="margin-bottom: 3rem;">
+      {% if paginator.posts %}
+        {% assign posts_to_show = paginator.posts %}
+      {% else %}
+        {% assign posts_to_show = site.posts %}
+      {% endif %}
+
+      {% for post in posts_to_show %}
+      <article class="post-card" data-category="{{ post.category }}">
+        <div class="post-card-meta">
+          <span class="tag">{{ post.category }}</span>
+          <span class="post-card-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </div>
+        <h3><a href="{{ post.url | relative_url }}" style="color: var(--ink);">{{ post.title }}</a></h3>
+        <p>{{ post.excerpt }}</p>
+        {% if post.read_time %}
+        <span style="font-size: 0.8rem; color: var(--ink-soft); margin-bottom: 0.75rem; display: block;">{{ post.read_time }}</span>
+        {% endif %}
+        <a href="{{ post.url | relative_url }}" class="post-card-link">Read &rarr;</a>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if paginator.total_pages > 1 %}
+    <nav class="pagination" aria-label="Pagination">
+      {% if paginator.previous_page %}
+        <a href="{{ paginator.previous_page_path | relative_url }}">&larr; Newer</a>
+      {% endif %}
+
+      {% for page in (1..paginator.total_pages) %}
+        {% if page == paginator.page %}
+          <span class="current">{{ page }}</span>
+        {% elsif page == 1 %}
+          <a href="{{ '/writing/' | relative_url }}">{{ page }}</a>
+        {% else %}
+          <a href="{{ site.paginate_path | replace: ':num', page | relative_url }}">{{ page }}</a>
+        {% endif %}
+      {% endfor %}
+
+      {% if paginator.next_page %}
+        <a href="{{ paginator.next_page_path | relative_url }}">Older &rarr;</a>
+      {% endif %}
+    </nav>
+    {% endif %}
+  </div>
+</main>

@@ -1,0 +1,70 @@
+---
+layout: default
+title: "Enterprise AI Use Cases"
+description: "A filterable library of enterprise AI use cases across Finance, HR, Supply Chain, Customer Service, IT, and Legal."
+permalink: /use-cases/
+---
+
+<main>
+  <div class="container">
+    <div class="archive-header reveal">
+      <p class="section-label">Use Cases</p>
+      <h1>Enterprise AI Use Case Library</h1>
+      <p class="hero-body" style="margin-top: 0.75rem; margin-bottom: 0;">
+        {{ site.data.use-cases | size }} real-world enterprise AI use cases across 6 business
+        areas and 5 process domains. Use the filters to find what&rsquo;s relevant to you.
+      </p>
+    </div>
+
+    <!-- Business Area filter -->
+    <div class="reveal">
+      <p class="filter-row-label">Business Area</p>
+      <div class="filter-bar">
+        <button class="filter-pill active" data-filter-biz="all">All</button>
+        <button class="filter-pill" data-filter-biz="Finance">Finance</button>
+        <button class="filter-pill" data-filter-biz="HR">HR</button>
+        <button class="filter-pill" data-filter-biz="Supply Chain">Supply Chain</button>
+        <button class="filter-pill" data-filter-biz="Customer Service">Customer Service</button>
+        <button class="filter-pill" data-filter-biz="IT">IT</button>
+        <button class="filter-pill" data-filter-biz="Legal">Legal</button>
+      </div>
+
+      <!-- Process Area filter -->
+      <p class="filter-row-label">Process Area</p>
+      <div class="filter-bar">
+        <button class="filter-pill active" data-filter-proc="all">All</button>
+        <button class="filter-pill" data-filter-proc="Automation">Automation</button>
+        <button class="filter-pill" data-filter-proc="Analytics">Analytics</button>
+        <button class="filter-pill" data-filter-proc="Knowledge">Knowledge</button>
+        <button class="filter-pill" data-filter-proc="Agents">Agents</button>
+        <button class="filter-pill" data-filter-proc="Generation">Generation</button>
+      </div>
+    </div>
+
+    <!-- Count & no-results -->
+    <p class="uc-count reveal" id="ucCount">{{ site.data.use-cases | size }} use cases shown</p>
+
+    <div class="uc-no-results" id="ucNoResults">
+      <p>No use cases match your current filters. Try adjusting your selection.</p>
+    </div>
+
+    <!-- Use case grid -->
+    <div class="uc-grid reveal">
+      {% for uc in site.data.use-cases %}
+      <div class="uc-card" data-biz="{{ uc.business }}" data-proc="{{ uc.process }}">
+        <div class="uc-card-header">
+          <h4>{{ uc.name }}</h4>
+          <span class="impact-badge {% if uc.impact == 'High' %}impact-high{% else %}impact-medium{% endif %}">
+            {{ uc.impact_label }}
+          </span>
+        </div>
+        <p>{{ uc.description }}</p>
+        <div class="uc-tags">
+          <span class="uc-tag">{{ uc.business }}</span>
+          <span class="uc-tag">{{ uc.process }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</main>

@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<main>
+  <div class="container">
+    <div class="post-header">
+      <span class="tag tag-gold">{{ page.category }}</span>
+      <h1>{{ page.title }}</h1>
+      <div class="post-meta-row">
+        <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+        {% if page.read_time %}
+        <span class="divider"></span>
+        <span>{{ page.read_time }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <article class="post-body">
+      {{ content }}
+    </article>
+
+    <div class="post-back">
+      <a href="{{ '/writing' | relative_url }}">&larr; Back to Writing</a>
+    </div>
+  </div>
+</main>

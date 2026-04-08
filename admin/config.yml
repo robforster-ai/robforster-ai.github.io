@@ -1,0 +1,33 @@
+backend:
+  name: github
+  repo: robforster-ai/robforster-ai.github.io
+  branch: main
+  # Add base_url after setting up Netlify OAuth proxy — see DECAP_CMS_SETUP.md
+  # base_url: https://YOUR-NETLIFY-SITE.netlify.app
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "_posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options:
+          - "Enterprise AI"
+          - "Delivery"
+          - "Knowledge"
+          - "Governance"
+          - "AI Strategy"
+          - "Career"
+      - { label: "Excerpt", name: "excerpt", widget: "string" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Read Time", name: "read_time", widget: "string", required: false, hint: 'e.g. "6 min read"' }
+      - { label: "Body", name: "body", widget: "markdown" }
