@@ -1,5 +1,16 @@
 document.addEventListener('DOMContentLoaded', function () {
 
+  /* ── Theme Toggle Button ─────────────────────────────────── */
+  var themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var current = document.documentElement.getAttribute('data-theme');
+      var next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    });
+  }
+
   /* ── Scroll Reveal ───────────────────────────────────────── */
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {

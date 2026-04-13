@@ -6,6 +6,14 @@
 <!-- SEO: remove the noindex meta tag once the site is ready to be indexed -->
 <meta name="robots" content="noindex, nofollow">
 
+<!-- Theme: apply before render to avoid flash -->
+<script>
+  (function(){var t=localStorage.getItem('theme')||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    if(t==='dark')document.documentElement.setAttribute('data-theme','dark');
+  })();
+</script>
+
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

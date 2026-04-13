@@ -21,6 +21,21 @@
   --transition: 0.25s ease;
 }
 
+/* --- Dark Mode Variables ----------------------------------- */
+[data-theme="dark"] {
+  --ink:       #E8E6E0;
+  --ink-soft:  #9A9891;
+  --gold:      #C4A167;
+  --gold-lt:   #D4B483;
+  --blue:      #5A7AB5;
+  --blue-lt:   #162033;
+  --page:      #141311;
+  --warm:      #1C1A17;
+  --rule:      #2E2C28;
+  --shadow-sm: 0 1px 4px rgba(0,0,0,.25);
+  --shadow-md: 0 4px 20px rgba(0,0,0,.4);
+}
+
 /* --- Reset & Base ------------------------------------------ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -148,6 +163,35 @@ p { color: var(--ink-soft); }
 
 .nav-cta::after { display: none !important; }
 .nav-cta:hover { background: var(--blue) !important; color: #fff !important; }
+
+/* --- Theme Toggle ------------------------------------------ */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: none;
+  cursor: pointer;
+  color: var(--ink-soft);
+  transition: color var(--transition), border-color var(--transition), background var(--transition);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.theme-toggle svg { display: block; }
+
+.theme-toggle .icon-sun  { display: none; }
+.theme-toggle .icon-moon { display: block; }
+
+[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 
 .nav-hamburger {
   display: none;
@@ -801,7 +845,7 @@ p { color: var(--ink-soft); }
 }
 
 .post-body pre {
-  background: var(--ink);
+  background: #111210;
   color: #e8e6e0;
   padding: 1.5rem;
   border-radius: var(--radius);
