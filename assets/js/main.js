@@ -137,4 +137,91 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  /* ── Geocities Mode ──────────────────────────────────────── */
+  (function () {
+    var btn = document.getElementById('geocitiesBtn');
+    if (!btn) return;
+
+    var geoActive = false;
+    var sparkleThrottle = false;
+
+    /* Marquee — inserted after nav */
+    var marqueeWrap = document.createElement('div');
+    marqueeWrap.className = 'geocities-marquee-wrap';
+    var msg = '★ WELCOME TO ROB FORSTER\'S HOME PAGE ★ '
+            + 'ENTERPRISE AI IS MY PASSION ★ '
+            + 'Best viewed in Netscape Navigator 4.0 at 800×600 ★ '
+            + 'Please sign my GUESTBOOK ★ '
+            + 'Last updated: TODAY ★ '
+            + 'NO HOTLINKING OR I WILL FIND YOU ★ '
+            + 'Under construction since 1996 ★ '
+            + 'Please enable JavaScript AND Flash Player ★ '
+            + 'AI is totally RADICAL ★ '
+            + 'This page is 100% Y2K compliant ★    ';
+    var marqueeEl = document.createElement('marquee');
+    marqueeEl.setAttribute('scrollamount', '5');
+    marqueeEl.style.cssText = 'font-family:\'Comic Sans MS\',cursive;font-weight:bold;color:#ffff00;font-size:0.95rem;';
+    marqueeEl.textContent = msg;
+    marqueeWrap.appendChild(marqueeEl);
+
+    var navEl = document.querySelector('.nav');
+    if (navEl && navEl.parentNode) {
+      navEl.parentNode.insertBefore(marqueeWrap, navEl.nextSibling);
+    }
+
+    /* Under Construction banner — inserted after hero */
+    var construction = document.createElement('div');
+    construction.className = 'geocities-construction';
+    construction.innerHTML = '&#x1F6A7;&nbsp; THIS SITE IS UNDER CONSTRUCTION &nbsp;&#x1F6A7;'
+      + '<br><span style="font-size:0.8rem;color:#000000;font-weight:normal;">'
+      + 'Please come back when it\'s finished. (It\'s never finished.)</span>';
+
+    var heroEl = document.querySelector('.hero');
+    if (heroEl && heroEl.nextSibling) {
+      heroEl.parentNode.insertBefore(construction, heroEl.nextSibling);
+    }
+
+    /* Visitor counter — inserted inside footer */
+    var counter = document.createElement('div');
+    counter.className = 'geocities-counter';
+    counter.innerHTML = '&#x1F441; You are visitor number <strong>#001,337</strong>';
+    var footerInner = document.querySelector('.footer-inner');
+    if (footerInner) {
+      footerInner.parentNode.insertBefore(counter, footerInner.nextSibling);
+    }
+
+    /* Cursor sparkle trail */
+    var sparkleColors = ['#ff0000','#ff8800','#ffff00','#00ff00','#0000ff','#ff00ff','#00ffff','#ffffff'];
+
+    function spawnSparkle(x, y) {
+      var el = document.createElement('div');
+      el.className = 'geo-sparkle';
+      el.style.background = sparkleColors[Math.floor(Math.random() * sparkleColors.length)];
+      el.style.left = (x - 4) + 'px';
+      el.style.top  = (y - 4) + 'px';
+      document.body.appendChild(el);
+      setTimeout(function () {
+        el.style.opacity = '0';
+        el.style.transform = 'scale(0) translateY(-' + (12 + Math.random() * 18) + 'px)';
+      }, 30);
+      setTimeout(function () {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, 800);
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      if (!geoActive || sparkleThrottle) return;
+      sparkleThrottle = true;
+      spawnSparkle(e.clientX, e.clientY);
+      setTimeout(function () { sparkleThrottle = false; }, 50);
+    });
+
+    /* Toggle */
+    btn.addEventListener('click', function () {
+      geoActive = !geoActive;
+      document.body.classList.toggle('geocities', geoActive);
+      btn.textContent = geoActive ? '\u2715 Exit Geocities Mode' : '\uD83D\uDCBE Geocities Mode';
+    });
+  }());
+
 });
