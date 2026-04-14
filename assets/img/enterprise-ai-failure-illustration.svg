@@ -1,93 +1,79 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 680 620" role="img">
+<svg width="1200" height="700" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f3c88"/>
+      <stop offset="100%" stop-color="#4a90e2"/>
+    </linearGradient>
+    <linearGradient id="orangeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ff7a18"/>
+      <stop offset="100%" stop-color="#ffb347"/>
+    </linearGradient>
+  </defs>
 
-<style>
-  .title { font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: 600; fill: #1F3A5F; }
-  .label { font-family: Arial, Helvetica, sans-serif; font-size: 12px; fill: #2F3E4E; }
-  .subtle { font-family: Arial, Helvetica, sans-serif; font-size: 11px; fill: #6B7785; }
-</style>
+  <!-- Background -->
+  <rect width="1200" height="700" fill="#f5f7fa"/>
 
-<!-- Background -->
-<rect x="0" y="0" width="680" height="620" fill="#FFFFFF"/>
+  <!-- Broken platform -->
+  <rect x="100" y="400" width="400" height="40" fill="#2c3e50"/>
+  <rect x="700" y="400" width="400" height="40" fill="#2c3e50"/>
 
-<!-- Ground -->
-<rect x="0" y="340" width="680" height="280" fill="#F5F7FA"/>
-<line x1="0" y1="340" x2="680" y2="340" stroke="#D0D6DC" stroke-width="1"/>
+  <!-- Gap -->
+  <polygon points="500,400 700,400 600,460" fill="#34495e"/>
 
-<!-- Divider -->
-<line x1="340" y1="60" x2="340" y2="580" stroke="#D0D6DC" stroke-width="1" stroke-dasharray="4 6"/>
+  <!-- AI Chip -->
+  <rect x="500" y="200" width="200" height="120" rx="12" fill="url(#blueGrad)"/>
+  <text x="600" y="275" font-size="48" text-anchor="middle" fill="white" font-family="Arial">AI</text>
 
-<!-- ===== LEFT: Unstable ===== -->
-<g transform="translate(165,0)">
-
-  <!-- Tower -->
-  <rect x="20" y="110" width="140" height="230" rx="2" fill="#1F3A5F" opacity="0.08" stroke="#1F3A5F" stroke-width="1"/>
-
-  <!-- Windows -->
-  <g fill="#1F3A5F" opacity="0.12">
-    <rect x="30" y="120" width="50" height="28"/>
-    <rect x="100" y="120" width="50" height="28"/>
-    <rect x="30" y="160" width="50" height="28"/>
-    <rect x="100" y="160" width="50" height="28"/>
-    <rect x="30" y="200" width="50" height="28"/>
-    <rect x="100" y="200" width="50" height="28"/>
-    <rect x="30" y="240" width="50" height="28"/>
-    <rect x="100" y="240" width="50" height="28"/>
+  <!-- Circuit lines -->
+  <g stroke="#4a90e2" stroke-width="3">
+    <line x1="500" y1="220" x2="450" y2="200"/>
+    <line x1="700" y1="220" x2="750" y2="200"/>
+    <line x1="500" y1="280" x2="450" y2="300"/>
+    <line x1="700" y1="280" x2="750" y2="300"/>
   </g>
 
-  <!-- Top -->
-  <rect x="65" y="80" width="50" height="30" fill="#1F3A5F" opacity="0.08"/>
-
-  <!-- Weak foundation -->
-  <rect x="15" y="340" width="150" height="40" fill="#D9DEE3"/>
-
-  <!-- Cracks -->
-  <g stroke="#9AA5B1" stroke-width="1.2">
-    <line x1="40" y1="350" x2="40" y2="380"/>
-    <line x1="80" y1="345" x2="85" y2="380"/>
-    <line x1="120" y1="348" x2="115" y2="380"/>
+  <!-- Robot arm -->
+  <g fill="url(#blueGrad)">
+    <rect x="150" y="250" width="60" height="150" rx="20"/>
+    <rect x="200" y="220" width="120" height="40" rx="20"/>
+    <circle cx="320" cy="240" r="25"/>
   </g>
 
-</g>
-
-<!-- ===== RIGHT: Stable ===== -->
-<g transform="translate(430,0)">
-
-  <!-- Tower -->
-  <rect x="20" y="190" width="140" height="150" rx="2" fill="#1F3A5F" opacity="0.08" stroke="#1F3A5F" stroke-width="1"/>
-
-  <!-- Windows -->
-  <g fill="#1F3A5F" opacity="0.12">
-    <rect x="30" y="200" width="50" height="28"/>
-    <rect x="100" y="200" width="50" height="28"/>
-    <rect x="30" y="240" width="50" height="28"/>
-    <rect x="100" y="240" width="50" height="28"/>
+  <!-- Business people -->
+  <g fill="#2c3e50">
+    <circle cx="820" cy="320" r="20"/>
+    <rect x="800" y="340" width="40" height="80" rx="10"/>
+    <circle cx="900" cy="320" r="20"/>
+    <rect x="880" y="340" width="40" height="80" rx="10"/>
+    <circle cx="980" cy="320" r="20"/>
+    <rect x="960" y="340" width="40" height="80" rx="10"/>
   </g>
 
-  <!-- Top -->
-  <rect x="65" y="160" width="50" height="30" fill="#1F3A5F" opacity="0.08"/>
+  <!-- Warning + gears -->
+  <g>
+    <circle cx="550" cy="520" r="40" fill="url(#orangeGrad)"/>
+    <text x="550" y="535" font-size="36" text-anchor="middle" fill="white">!</text>
 
-  <!-- Strong foundation -->
-  <rect x="10" y="340" width="160" height="40" fill="#C7D2DE"/>
+    <circle cx="480" cy="560" r="25" fill="#34495e"/>
+    <circle cx="620" cy="560" r="25" fill="#34495e"/>
+  </g>
 
-  <!-- Deep layers -->
-  <rect x="5" y="380" width="170" height="25" fill="#DCE3EA"/>
-  <rect x="0" y="405" width="180" height="25" fill="#E6EBF0"/>
-  <rect x="-5" y="430" width="190" height="30" fill="#F0F3F6"/>
+  <!-- Tangled line -->
+  <path d="M200 550 C250 500, 300 600, 350 550 S450 600, 500 550" 
+        stroke="#2c3e50" stroke-width="4" fill="none"/>
 
-</g>
+  <!-- Hourglass -->
+  <g transform="translate(850,500)">
+    <rect x="0" y="0" width="60" height="120" rx="10" fill="#2c3e50"/>
+    <polygon points="10,10 50,10 30,50" fill="url(#orangeGrad)"/>
+    <polygon points="10,110 50,110 30,70" fill="url(#orangeGrad)"/>
+  </g>
 
-<!-- ===== TITLES ===== -->
-<text x="170" y="70" class="label" text-anchor="middle">Technology-led</text>
-<text x="170" y="560" class="subtle" text-anchor="middle">Impressive but unstable</text>
-
-<text x="510" y="70" class="label" text-anchor="middle">Business-led</text>
-<text x="510" y="560" class="subtle" text-anchor="middle">Modest but delivers value</text>
-
-<!-- ===== FOUNDATION TEXT ===== -->
-<text x="170" y="410" class="label" text-anchor="middle">Weak foundations</text>
-<text x="170" y="430" class="subtle" text-anchor="middle">No ownership • Misaligned stakeholders • No change plan</text>
-
-<text x="510" y="400" class="label" text-anchor="middle">Strong foundations</text>
-<text x="510" y="420" class="subtle" text-anchor="middle">Executive sponsorship • Change management • Phased delivery</text>
+  <!-- Calendar -->
+  <g transform="translate(950,500)">
+    <rect width="120" height="100" rx="10" fill="#ffffff" stroke="#2c3e50"/>
+    <line x1="0" y1="30" x2="120" y2="30" stroke="#2c3e50"/>
+    <text x="60" y="75" text-anchor="middle" font-size="36" fill="#e74c3c">✕</text>
+  </g>
 
 </svg>
