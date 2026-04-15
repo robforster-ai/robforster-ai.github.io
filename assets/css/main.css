@@ -1099,6 +1099,216 @@ p { color: var(--ink-soft); }
 }
 
 /* ============================================================
+   AI USE CASE RECOMMENDER
+   ============================================================ */
+
+/* --- Page header ------------------------------------------- */
+.rec-page-header {
+  padding: 4rem 0 3rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--warm);
+}
+
+.rec-lead {
+  font-size: 1.05rem;
+  max-width: 52ch;
+  margin-top: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.recommender-section {
+  padding: 4rem 0 6rem;
+}
+
+.recommender-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- Progress indicator ------------------------------------ */
+.rec-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.rec-progress-dots {
+  display: flex;
+  align-items: center;
+}
+
+.rec-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--rule);
+  border: 2px solid var(--rule);
+  flex-shrink: 0;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.rec-dot.active {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+
+.rec-dot.done {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+
+.rec-connector {
+  width: 64px;
+  height: 2px;
+  background: var(--rule);
+  flex-shrink: 0;
+  transition: background 0.3s ease;
+}
+
+.rec-connector.done { background: var(--blue); }
+
+.rec-step-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* --- Steps ------------------------------------------------- */
+.rec-step { transition: opacity 0.25s ease; }
+
+/* --- Question ---------------------------------------------- */
+.rec-question {
+  font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  margin-bottom: 2rem;
+  color: var(--ink);
+}
+
+/* --- Option grid ------------------------------------------- */
+.rec-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.rec-options-2col { grid-template-columns: repeat(2, 1fr); }
+.rec-options-1col { grid-template-columns: 1fr; }
+
+.rec-option {
+  background: var(--page);
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.2rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-body);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  transition: border-color 0.2s ease, background 0.2s ease,
+              transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.rec-option:hover {
+  border-color: var(--gold);
+  background: var(--warm);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.rec-option.selected {
+  border-color: var(--blue);
+  background: var(--blue-lt);
+}
+
+.rec-option-span { grid-column: 1 / -1; }
+
+.rec-option-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.rec-option-sub {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+/* --- Back button ------------------------------------------- */
+.rec-back {
+  background: none;
+  border: none;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-family: var(--font-body);
+  padding: 0;
+  margin-top: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.rec-back:hover { color: var(--gold); }
+
+/* --- Results ----------------------------------------------- */
+.rec-results-header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.rec-results-title {
+  font-size: clamp(1.35rem, 2.8vw, 1.9rem);
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+}
+
+.rec-maturity-context {
+  font-size: 0.95rem;
+  max-width: 64ch;
+  margin-top: 0.5rem;
+}
+
+.rec-results-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+}
+
+/* --- Homepage teaser --------------------------------------- */
+.rec-teaser {
+  background: var(--blue);
+}
+
+.rec-teaser .container { text-align: center; }
+.rec-teaser h2 { color: #fff; margin-bottom: 1rem; }
+.rec-teaser-body {
+  max-width: 52ch;
+  margin: 0 auto 2rem;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.8);
+}
+
+/* --- Responsive -------------------------------------------- */
+@media (max-width: 768px) {
+  .rec-options { grid-template-columns: repeat(2, 1fr); }
+  .rec-options-1col { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .rec-options,
+  .rec-options-2col { grid-template-columns: 1fr; }
+  .rec-connector { width: 32px; }
+}
+
+/* ============================================================
    GEOCITIES MODE
    ============================================================ */
 

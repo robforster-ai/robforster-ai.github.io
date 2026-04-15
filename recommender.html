@@ -1,0 +1,335 @@
+---
+layout: default
+title: "AI Use Case Recommender"
+description: "Answer 3 questions to get personalised AI use case recommendations tailored to your business area and goals."
+---
+
+<script>
+var USE_CASES = {{ site.data.use-cases | jsonify }};
+</script>
+
+<!-- Page header -->
+<div class="rec-page-header reveal">
+  <div class="container">
+    <p class="section-label">Interactive Tool</p>
+    <h1>AI Use Case Recommender</h1>
+    <p class="rec-lead">Answer three questions and get personalised recommendations from the use case library.</p>
+  </div>
+</div>
+
+<!-- Tool -->
+<section class="recommender-section">
+  <div class="container">
+    <div class="recommender-wrap">
+
+      <!-- Progress indicator -->
+      <div class="rec-progress" id="recProgress">
+        <div class="rec-progress-dots">
+          <span class="rec-dot active" id="recDot1"></span>
+          <span class="rec-connector" id="recConn1"></span>
+          <span class="rec-dot" id="recDot2"></span>
+          <span class="rec-connector" id="recConn2"></span>
+          <span class="rec-dot" id="recDot3"></span>
+        </div>
+        <p class="rec-step-label" id="recStepLabel">Step 1 of 3</p>
+      </div>
+
+      <!-- Step 1: Business area -->
+      <div class="rec-step" id="recStep1">
+        <h2 class="rec-question">What is your primary business area?</h2>
+        <div class="rec-options">
+          <button class="rec-option" data-step="1" data-value="Finance">
+            <span class="rec-option-name">Finance</span>
+          </button>
+          <button class="rec-option" data-step="1" data-value="HR">
+            <span class="rec-option-name">HR</span>
+          </button>
+          <button class="rec-option" data-step="1" data-value="Supply Chain">
+            <span class="rec-option-name">Supply Chain</span>
+          </button>
+          <button class="rec-option" data-step="1" data-value="Customer Service">
+            <span class="rec-option-name">Customer Service</span>
+          </button>
+          <button class="rec-option" data-step="1" data-value="IT">
+            <span class="rec-option-name">IT</span>
+          </button>
+          <button class="rec-option" data-step="1" data-value="Legal">
+            <span class="rec-option-name">Legal</span>
+          </button>
+          <button class="rec-option rec-option-span" data-step="1" data-value="all">
+            <span class="rec-option-name">Not sure / Cross-functional</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Outcome type -->
+      <div class="rec-step" id="recStep2" style="display:none;opacity:0;">
+        <h2 class="rec-question">What type of outcome are you looking for?</h2>
+        <div class="rec-options rec-options-2col">
+          <button class="rec-option" data-step="2" data-value="Automation">
+            <span class="rec-option-name">Reduce manual effort</span>
+            <span class="rec-option-sub">Automation</span>
+          </button>
+          <button class="rec-option" data-step="2" data-value="Analytics">
+            <span class="rec-option-name">Make better decisions</span>
+            <span class="rec-option-sub">Analytics &amp; insight</span>
+          </button>
+          <button class="rec-option" data-step="2" data-value="Knowledge">
+            <span class="rec-option-name">Surface knowledge faster</span>
+            <span class="rec-option-sub">Knowledge management</span>
+          </button>
+          <button class="rec-option" data-step="2" data-value="Agents">
+            <span class="rec-option-name">Automate end-to-end workflows</span>
+            <span class="rec-option-sub">Agentic AI</span>
+          </button>
+          <button class="rec-option rec-option-span" data-step="2" data-value="Generation">
+            <span class="rec-option-name">Create content or drafts</span>
+            <span class="rec-option-sub">Content generation</span>
+          </button>
+        </div>
+        <button class="rec-back" id="recBack2">&larr; Back</button>
+      </div>
+
+      <!-- Step 3: Maturity -->
+      <div class="rec-step" id="recStep3" style="display:none;opacity:0;">
+        <h2 class="rec-question">How mature is your AI capability?</h2>
+        <div class="rec-options rec-options-1col">
+          <button class="rec-option" data-step="3" data-value="starter">
+            <span class="rec-option-name">Just starting out</span>
+            <span class="rec-option-sub">Exploring what AI can do for us</span>
+          </button>
+          <button class="rec-option" data-step="3" data-value="pilot">
+            <span class="rec-option-name">Some pilots underway</span>
+            <span class="rec-option-sub">We&rsquo;ve run proofs-of-concept and are building momentum</span>
+          </button>
+          <button class="rec-option" data-step="3" data-value="scaling">
+            <span class="rec-option-name">Scaling across the business</span>
+            <span class="rec-option-sub">AI is in production; we&rsquo;re expanding systematically</span>
+          </button>
+        </div>
+        <button class="rec-back" id="recBack3">&larr; Back</button>
+      </div>
+
+      <!-- Results -->
+      <div class="rec-step" id="recResults" style="display:none;opacity:0;">
+        <div class="rec-results-header">
+          <p class="section-label">Your recommendations</p>
+          <h2 class="rec-results-title" id="recResultsTitle"></h2>
+          <p class="rec-maturity-context" id="recMaturityCtx"></p>
+        </div>
+        <div class="uc-grid" id="recGrid"></div>
+        <div class="rec-results-ctas">
+          <a href="{{ '/use-cases' | relative_url }}" class="btn btn-primary">Explore all use cases &rarr;</a>
+          <button class="btn btn-outline" id="recRestart">Start again</button>
+        </div>
+        <div style="margin-top: 1.5rem;">
+          <button class="rec-back" id="recBackResults">&larr; Change answers</button>
+        </div>
+      </div>
+
+    </div><!-- /.recommender-wrap -->
+  </div><!-- /.container -->
+</section>
+
+<script>
+(function () {
+  var DATA = (typeof USE_CASES !== 'undefined') ? USE_CASES : [];
+
+  var answers  = { biz: null, process: null, maturity: null };
+  var activeEl = document.getElementById('recStep1');
+
+  var STEPS = {
+    1:       document.getElementById('recStep1'),
+    2:       document.getElementById('recStep2'),
+    3:       document.getElementById('recStep3'),
+    results: document.getElementById('recResults')
+  };
+
+  var MATURITY_CONTEXT = {
+    starter: 'These use cases are well-suited to early AI adoption. Each can be approached as a focused, low-risk pilot with clear success metrics — a strong foundation for building internal capability.',
+    pilot:   'Building on your existing experience, these use cases are strong candidates for your next investment. Proven patterns with measurable returns and established delivery playbooks.',
+    scaling: 'At your level of maturity, these use cases can be deployed systematically at scale, with robust governance, deep workflow integration, and clear value measurement frameworks.'
+  };
+
+  var OUTCOME_LABELS = {
+    Automation: 'automation',
+    Analytics:  'analytics & insight',
+    Knowledge:  'knowledge management',
+    Agents:     'agentic workflows',
+    Generation: 'content generation'
+  };
+
+  var BIZ_LABELS = {
+    Finance:            'Finance',
+    HR:                 'HR',
+    'Supply Chain':     'Supply Chain',
+    'Customer Service': 'Customer Service',
+    IT:                 'IT',
+    Legal:              'Legal',
+    all:                'cross-functional'
+  };
+
+  /* ── Fade transition ──────────────────────────────────── */
+  function transitionTo(nextKey) {
+    var nextEl = (typeof nextKey === 'number') ? STEPS[nextKey] : STEPS.results;
+    var prevEl = activeEl;
+
+    prevEl.style.opacity       = '0';
+    prevEl.style.pointerEvents = 'none';
+
+    setTimeout(function () {
+      prevEl.style.display       = 'none';
+      prevEl.style.pointerEvents = '';
+
+      nextEl.style.display = 'block';
+      nextEl.style.opacity = '0';
+      activeEl = nextEl;
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          nextEl.style.opacity = '1';
+        });
+      });
+
+      updateProgress(typeof nextKey === 'number' ? nextKey : 'results');
+    }, 250);
+  }
+
+  /* ── Progress dots ────────────────────────────────────── */
+  function updateProgress(step) {
+    var progress = document.getElementById('recProgress');
+    var label    = document.getElementById('recStepLabel');
+    var dots  = ['recDot1', 'recDot2', 'recDot3'].map(function (id) {
+      return document.getElementById(id);
+    });
+    var conns = ['recConn1', 'recConn2'].map(function (id) {
+      return document.getElementById(id);
+    });
+
+    if (step === 'results') {
+      progress.style.display = 'none';
+      return;
+    }
+
+    progress.style.display = '';
+    label.textContent = 'Step ' + step + ' of 3';
+
+    dots.forEach(function (d, i) {
+      d.classList.remove('active', 'done');
+      if      (i + 1 < step)  d.classList.add('done');
+      else if (i + 1 === step) d.classList.add('active');
+    });
+
+    conns.forEach(function (c, i) {
+      c.classList.toggle('done', i + 1 < step);
+    });
+  }
+
+  /* ── Matching ─────────────────────────────────────────── */
+  function getRecommendations(biz, proc) {
+    var scored = DATA.map(function (uc) {
+      var bizMatch  = (biz === 'all') || (uc.business === biz);
+      var procMatch = (uc.process === proc);
+      var score = 0;
+      if      (bizMatch && procMatch) score = 3;
+      else if (bizMatch)              score = 2;
+      else if (procMatch)             score = 1;
+      return { uc: uc, score: score + (uc.impact === 'High' ? 0.1 : 0) };
+    });
+    scored.sort(function (a, b) { return b.score - a.score; });
+    return scored.slice(0, 3).map(function (s) { return s.uc; });
+  }
+
+  /* ── Render results ───────────────────────────────────── */
+  function renderResults() {
+    var titleEl  = document.getElementById('recResultsTitle');
+    var ctxEl    = document.getElementById('recMaturityCtx');
+    var gridEl   = document.getElementById('recGrid');
+    var results  = getRecommendations(answers.biz, answers.process);
+    var bizLabel = BIZ_LABELS[answers.biz]     || answers.biz;
+    var procLabel = OUTCOME_LABELS[answers.process] || answers.process.toLowerCase();
+
+    titleEl.textContent = (answers.biz === 'all')
+      ? 'Top use cases for ' + procLabel
+      : bizLabel + ' use cases for ' + procLabel;
+
+    ctxEl.textContent = MATURITY_CONTEXT[answers.maturity] || '';
+
+    gridEl.innerHTML = '';
+    results.forEach(function (uc) {
+      var card = document.createElement('div');
+      card.className = 'uc-card';
+      card.innerHTML =
+        '<div class="uc-card-header">' +
+          '<h4>' + esc(uc.name) + '</h4>' +
+          '<span class="impact-badge ' +
+            (uc.impact === 'High' ? 'impact-high' : 'impact-medium') +
+          '">' + esc(uc.impact_label) + '</span>' +
+        '</div>' +
+        '<p>' + esc(uc.description) + '</p>' +
+        '<div class="uc-tags">' +
+          '<span class="uc-tag">' + esc(uc.business) + '</span>' +
+          '<span class="uc-tag">' + esc(uc.process)  + '</span>' +
+        '</div>';
+      gridEl.appendChild(card);
+    });
+  }
+
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  /* ── Reset ────────────────────────────────────────────── */
+  function resetAll() {
+    answers = { biz: null, process: null, maturity: null };
+    document.querySelectorAll('.rec-option').forEach(function (b) {
+      b.classList.remove('selected');
+    });
+    document.getElementById('recProgress').style.display = '';
+    transitionTo(1);
+  }
+
+  /* ── Option clicks ────────────────────────────────────── */
+  document.querySelectorAll('.rec-option[data-step]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var step = parseInt(btn.getAttribute('data-step'), 10);
+      var val  = btn.getAttribute('data-value');
+
+      STEPS[step].querySelectorAll('.rec-option').forEach(function (b) {
+        b.classList.remove('selected');
+      });
+      btn.classList.add('selected');
+
+      if (step === 1) {
+        answers.biz = val;
+        transitionTo(2);
+      } else if (step === 2) {
+        answers.process = val;
+        transitionTo(3);
+      } else if (step === 3) {
+        answers.maturity = val;
+        renderResults();
+        transitionTo('results');
+      }
+    });
+  });
+
+  /* ── Back & restart ───────────────────────────────────── */
+  document.getElementById('recBack2').addEventListener('click', function () {
+    transitionTo(1);
+  });
+  document.getElementById('recBack3').addEventListener('click', function () {
+    transitionTo(2);
+  });
+  document.getElementById('recBackResults').addEventListener('click', function () {
+    document.getElementById('recProgress').style.display = '';
+    transitionTo(3);
+  });
+  document.getElementById('recRestart').addEventListener('click', resetAll);
+
+}());
+</script>
