@@ -6,6 +6,7 @@ category: "Delivery"
 excerpt: "Running multiple AI workstreams simultaneously feels like it should accelerate delivery. In practice, it often does the opposite — fragmenting attention, creating integration debt, and making it harder to demonstrate value at the moments that matter most."
 featured: false
 read_time: "6 min read"
+slug: "hidden-cost-parallel-workstreams"
 ---
 
 Running multiple AI workstreams simultaneously feels like it should accelerate delivery. In practice, it often does the opposite — fragmenting attention, creating integration debt, and making it harder to demonstrate value at the moments that matter most. This is one of the most consistent patterns I see in enterprise AI programmes, and it is one of the least discussed.

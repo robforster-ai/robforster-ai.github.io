@@ -100,6 +100,30 @@ Items are sorted by date (newest first) automatically.
 
 ---
 
+## Generating OG Images for New Posts
+
+Every time you publish a new blog post, run the following command from the repository root to generate its OG image:
+
+```bash
+python scripts/generate-og-images.py
+```
+
+This will generate a new image for any post that does not already have one in `assets/img/og/`. Commit the new image file alongside your post.
+
+The script requires Python 3 and will install its own dependencies (`Pillow`, `python-frontmatter`) automatically on first run. If you are in a managed Python environment, install them manually first:
+
+```bash
+pip install Pillow python-frontmatter
+```
+
+To preview how a page will look when shared on LinkedIn, use the LinkedIn Post Inspector:
+
+```
+https://www.linkedin.com/post-inspector/
+```
+
+---
+
 ## Enabling SEO (when ready to go public)
 
 1. **Remove noindex**: Open `_includes/head.html` and delete the line:

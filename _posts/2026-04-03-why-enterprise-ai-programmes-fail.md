@@ -7,6 +7,7 @@ excerpt: "Most enterprise AI programmes that fail do so not because the models a
 featured: true
 image: "/assets/img/enterprise-ai-failure-illustration.svg"
 read_time: "8 min read"
+slug: "why-enterprise-ai-programmes-fail"
 ---
 
 Most enterprise AI programmes that fail do so not because the models are poor or the data is insufficient, but because of structural and organisational factors that no amount of technical sophistication can compensate for. After a decade of leading and observing these programmes at scale, I have come to believe that the technology is rarely the constraint. The constraint is almost always organisational.
