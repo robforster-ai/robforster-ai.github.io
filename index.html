@@ -139,7 +139,7 @@ description: "Practitioner writing on enterprise AI transformation and programme
 <!-- ═══════════════════════════════════════════════════════
      SECTION 5: USE CASES PREVIEW
 ═══════════════════════════════════════════════════════ -->
-<section class="section reveal">
+<section class="section reveal usecases-preview">
   <div class="container">
     <div class="section-header">
       <div>
@@ -171,6 +171,14 @@ description: "Practitioner writing on enterprise AI transformation and programme
           <span class="uc-tag">{{ uc.business }}</span>
           <span class="uc-tag">{{ uc.process }}</span>
         </div>
+        {% if uc.kpis %}
+        <div class="uc-kpis">
+          <div class="uc-kpis-label">Key KPIs</div>
+          {% for kpi in uc.kpis %}
+          <div class="uc-kpi-item">{{ kpi }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
       {% endfor %}
     </div>

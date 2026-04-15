@@ -2,131 +2,40 @@
 # business: Finance | HR | Supply Chain | Customer Service | IT | Legal
 # process: Automation | Analytics | Knowledge | Agents | Generation
 
-- name: "Automated Invoice Processing"
+# ── FINANCE ──────────────────────────────────────────
+
+- name: "Invoice Processing & Matching"
   business: "Finance"
   process: "Automation"
-  description: "AI extracts, validates, and routes invoice data from unstructured documents, matching against purchase orders and flagging discrepancies. Reduces manual processing time and error rates across high-volume AP workflows."
+  description: "AI extracts, validates and matches invoices against purchase orders, flagging discrepancies and routing exceptions — reducing manual processing time by 70–80%."
   impact: "High"
-  impact_label: "High Impact"
+  impact_label: "Mature technology"
+  kpis:
+    - "Invoice processing time (hours per invoice)"
+    - "Straight-through processing rate (%)"
+    - "Exception rate (% of invoices requiring manual review)"
 
-- name: "Financial Anomaly Detection"
+- name: "Cash Flow Forecasting"
   business: "Finance"
   process: "Analytics"
-  description: "Machine learning models continuously monitor transaction streams to detect unusual patterns indicative of fraud, error, or policy violations. Enables real-time alerts and audit trails without manual review overhead."
+  description: "ML models analyse historical payment patterns, market signals and receivables data to produce rolling cash flow forecasts with scenario modelling."
   impact: "High"
-  impact_label: "High Impact"
+  impact_label: "Proven ROI"
+  kpis:
+    - "Forecast accuracy (% variance vs actuals)"
+    - "Forecast cycle time (days to produce)"
+    - "Days Sales Outstanding (DSO)"
 
-- name: "Regulatory Reporting Generation"
+- name: "Month-End Close Agent"
   business: "Finance"
-  process: "Generation"
-  description: "LLMs synthesise structured financial data and commentary into draft regulatory reports aligned with submission templates. Reduces report preparation time from days to hours while maintaining compliance traceability."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "CV Screening & Shortlisting"
-  business: "HR"
-  process: "Automation"
-  description: "AI parses and scores incoming applications against role criteria, surfacing top candidates for hiring manager review. Cuts time-to-shortlist significantly while improving consistency across large applicant pools."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Employee Knowledge Assistant"
-  business: "HR"
-  process: "Knowledge"
-  description: "A conversational AI assistant answers employee questions about policies, benefits, and processes by retrieving answers from the HR knowledge base. Reduces HR helpdesk ticket volume and improves self-service resolution rates."
-  impact: "Medium"
-  impact_label: "Medium Impact"
-
-- name: "Learning Path Personalisation"
-  business: "HR"
-  process: "Analytics"
-  description: "AI analyses employee skills gaps, performance data, and career goals to recommend personalised learning content and development paths. Improves training relevance and completion rates across the workforce."
-  impact: "Medium"
-  impact_label: "Medium Impact"
-
-- name: "Demand Forecasting"
-  business: "Supply Chain"
-  process: "Analytics"
-  description: "ML models ingest sales history, external signals, and seasonality to produce granular demand forecasts across SKUs and geographies. Enables procurement teams to optimise inventory levels and reduce both stockouts and overstock."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Supplier Risk Monitoring"
-  business: "Supply Chain"
   process: "Agents"
-  description: "Autonomous agents continuously scan news, financial filings, and regulatory databases to surface emerging supplier risks. Provides supply chain teams with early warning signals before disruptions materialise."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Logistics Route Optimisation"
-  business: "Supply Chain"
-  process: "Automation"
-  description: "AI optimises delivery routes in real-time by factoring in traffic, weather, vehicle capacity, and delivery windows. Reduces fuel costs and improves on-time delivery performance across large fleets."
+  description: "An agentic workflow that orchestrates reconciliations, flags variances and prepares management accounts — compressing close cycles from days to hours."
   impact: "Medium"
-  impact_label: "Medium Impact"
-
-- name: "Intelligent Triage & Routing"
-  business: "Customer Service"
-  process: "Automation"
-  description: "AI classifies inbound customer contacts by intent and sentiment, routing them to the most appropriate agent or automated resolution path. Reduces misrouting, average handle time, and customer effort scores."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Agent Assist & Knowledge Retrieval"
-  business: "Customer Service"
-  process: "Knowledge"
-  description: "Real-time AI surfaces relevant knowledge articles, customer history, and suggested responses to agents during live interactions. Reduces average handle time and improves first-contact resolution without increasing headcount."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Automated Case Summarisation"
-  business: "Customer Service"
-  process: "Generation"
-  description: "LLMs generate concise summaries of customer interaction histories, enabling agents to quickly understand context when handling escalations or transfers. Reduces after-call work and improves case handover quality."
-  impact: "Medium"
-  impact_label: "Medium Impact"
-
-- name: "IT Incident Classification"
-  business: "IT"
-  process: "Automation"
-  description: "AI automatically classifies, prioritises, and routes incoming IT incidents based on description and historical patterns. Reduces triage time and ensures critical incidents reach the right resolver groups faster."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Code Review & Security Scanning"
-  business: "IT"
-  process: "Agents"
-  description: "AI agents review pull requests for code quality, security vulnerabilities, and compliance with coding standards, providing actionable inline feedback. Accelerates review cycles and reduces vulnerabilities reaching production."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Infrastructure Anomaly Detection"
-  business: "IT"
-  process: "Analytics"
-  description: "ML models analyse infrastructure metrics and logs to detect performance degradation or failure precursors before they cause outages. Enables proactive remediation, reducing unplanned downtime and SLA breaches."
-  impact: "Medium"
-  impact_label: "Medium Impact"
-
-- name: "Contract Review & Redlining"
-  business: "Legal"
-  process: "Agents"
-  description: "AI agents review contract drafts against playbooks, flagging non-standard clauses, missing provisions, and suggested redlines for legal team review. Reduces contract review time from hours to minutes for standard agreements."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Legal Research & Precedent Finding"
-  business: "Legal"
-  process: "Knowledge"
-  description: "AI retrieves and synthesises relevant case law, regulations, and internal precedents to support legal team research tasks. Reduces research time significantly while improving coverage across large document repositories."
-  impact: "High"
-  impact_label: "High Impact"
-
-- name: "Compliance Policy Drafting"
-  business: "Legal"
-  process: "Generation"
-  description: "LLMs generate first drafts of compliance policies, procedures, and regulatory response documents based on structured inputs and regulatory context. Accelerates policy development cycles and ensures consistent formatting and coverage."
-  impact: "Medium"
-  impact_label: "Medium Impact"
+  impact_label: "Emerging · High potential"
+  kpis:
+    - "Close cycle duration (calendar days)"
+    - "Number of manual journal entries"
+    - "Reconciliation completion rate on Day 1 (%)"
 
 - name: "AI-Assisted Audit & Assurance"
   business: "Finance"
@@ -134,6 +43,10 @@
   description: "Multi-agent frameworks automate audit sampling, evidence gathering and anomaly flagging across financial statements — compressing audit timelines while improving coverage and consistency."
   impact: "High"
   impact_label: "Emerging at scale"
+  kpis:
+    - "Audit cycle time (days)"
+    - "Sample coverage rate (% of population tested)"
+    - "Anomalies detected per audit cycle"
 
 - name: "Treasury & FX Risk Monitoring"
   business: "Finance"
@@ -141,6 +54,10 @@
   description: "Real-time AI monitoring of currency exposure, interest rate movements and counterparty risk — surfacing hedging recommendations and flagging threshold breaches before they become material."
   impact: "High"
   impact_label: "High-value deployment"
+  kpis:
+    - "FX exposure breaches caught before threshold (% of total)"
+    - "Hedging recommendation adoption rate (%)"
+    - "Time to alert on threshold breach (minutes)"
 
 - name: "Expense Policy Compliance"
   business: "Finance"
@@ -148,6 +65,45 @@
   description: "AI reviews expense claims against policy rules, flags exceptions and routes for approval — eliminating manual review of compliant claims and reducing processing time by up to 80%."
   impact: "Medium"
   impact_label: "Quick win"
+  kpis:
+    - "Expense processing time (days from submission to approval)"
+    - "Policy violation detection rate (%)"
+    - "% of claims processed without human review"
+
+# ── HR ────────────────────────────────────────────────
+
+- name: "CV Screening & Shortlisting"
+  business: "HR"
+  process: "Automation"
+  description: "AI ranks and screens applications against role criteria, surfacing the strongest candidates while flagging bias risks — enabling recruiters to focus on human judgement."
+  impact: "High"
+  impact_label: "Widely deployed"
+  kpis:
+    - "Time to shortlist (days from application close)"
+    - "Recruiter hours per hire"
+    - "Quality of hire score (hiring manager rating at 90 days)"
+
+- name: "Employee Policy Assistant"
+  business: "HR"
+  process: "Knowledge"
+  description: "RAG-powered virtual assistant answers HR policy questions in real time, drawing from the employee handbook, benefits documentation and compliance guidance."
+  impact: "High"
+  impact_label: "Fast to deploy"
+  kpis:
+    - "HR query deflection rate (% resolved without human)"
+    - "Average query response time (seconds)"
+    - "Employee satisfaction score (CSAT) for HR queries"
+
+- name: "Job Description Generator"
+  business: "HR"
+  process: "Generation"
+  description: "Generates inclusive, structured job descriptions from a brief input — calibrated to the role, level and employer brand, with bias detection built in."
+  impact: "Medium"
+  impact_label: "Quick win"
+  kpis:
+    - "Time to produce job description (hours)"
+    - "Bias flag rate (% of drafts requiring revision)"
+    - "Hiring manager approval rate on first draft (%)"
 
 - name: "Learning & Development Personalisation"
   business: "HR"
@@ -155,6 +111,10 @@
   description: "AI agents build personalised learning paths based on role, skill gaps and career goals — recommending content, scheduling learning time and tracking completion without L&D team intervention."
   impact: "Medium"
   impact_label: "Emerging · High potential"
+  kpis:
+    - "Learning completion rate (%)"
+    - "Time to competency (days from onboarding)"
+    - "Internal mobility rate (% promoted or transferred within 12 months)"
 
 - name: "Workforce Planning & Attrition Prediction"
   business: "HR"
@@ -162,6 +122,45 @@
   description: "Predictive models identify employees at high risk of leaving, surface contributing factors and recommend targeted retention actions — giving HR and line managers time to intervene proactively."
   impact: "High"
   impact_label: "Proven ROI"
+  kpis:
+    - "Voluntary attrition rate (%)"
+    - "Prediction accuracy of attrition model (%)"
+    - "Retention intervention success rate (%)"
+
+# ── SUPPLY CHAIN ──────────────────────────────────────
+
+- name: "Demand Forecasting"
+  business: "Supply Chain"
+  process: "Analytics"
+  description: "ML models combine sell-out data, promotional calendars and macroeconomic signals to produce granular demand forecasts, reducing forecast error and safety stock."
+  impact: "High"
+  impact_label: "Enterprise-proven"
+  kpis:
+    - "Forecast error (MAPE — Mean Absolute Percentage Error)"
+    - "Safety stock reduction (%)"
+    - "Service level / on-shelf availability (%)"
+
+- name: "Supplier Risk Monitoring"
+  business: "Supply Chain"
+  process: "Automation"
+  description: "Continuous monitoring of supplier news, financial signals and ESG data to surface emerging risks early — enabling proactive rather than reactive supply chain management."
+  impact: "High"
+  impact_label: "Strategic value"
+  kpis:
+    - "Mean time to detect supplier risk event (days)"
+    - "% of risk events identified proactively vs reactively"
+    - "Supplier risk score coverage (% of tier-1 suppliers monitored)"
+
+- name: "Purchase Order Agent"
+  business: "Supply Chain"
+  process: "Agents"
+  description: "Agentic PO management that monitors inventory thresholds, generates purchase orders, checks supplier availability and escalates exceptions without human intervention."
+  impact: "Medium"
+  impact_label: "Emerging · High potential"
+  kpis:
+    - "PO processing time (hours from trigger to submission)"
+    - "% of POs raised without human intervention"
+    - "Stockout frequency (incidents per month)"
 
 - name: "Logistics Route Optimisation"
   business: "Supply Chain"
@@ -169,6 +168,10 @@
   description: "AI optimises delivery routes in real time, accounting for traffic, weather, vehicle capacity and time windows — reducing fuel costs and improving on-time delivery performance."
   impact: "High"
   impact_label: "Enterprise-proven"
+  kpis:
+    - "On-time delivery rate (%)"
+    - "Fuel cost per delivery (£)"
+    - "Fleet utilisation rate (%)"
 
 - name: "Returns & Reverse Logistics Agent"
   business: "Supply Chain"
@@ -176,6 +179,45 @@
   description: "Autonomous agent manages the full returns workflow — validating eligibility, initiating collections, updating inventory and triggering refunds — without human intervention for standard cases."
   impact: "Medium"
   impact_label: "Emerging · Cost saving"
+  kpis:
+    - "Returns processing time (days from request to resolution)"
+    - "% of returns resolved without human intervention"
+    - "Customer satisfaction score on returns (CSAT)"
+
+# ── CUSTOMER SERVICE ──────────────────────────────────
+
+- name: "AI Virtual Assistant (Tier 1)"
+  business: "Customer Service"
+  process: "Agents"
+  description: "Conversational AI handles high-volume Tier 1 queries — order status, returns, account queries — with seamless handoff to human agents for complex cases."
+  impact: "High"
+  impact_label: "Proven at scale"
+  kpis:
+    - "Containment rate (% of queries resolved without human handoff)"
+    - "Average handle time (minutes)"
+    - "Customer satisfaction score / CSAT (%)"
+
+- name: "Agent Assist & Knowledge Surfacing"
+  business: "Customer Service"
+  process: "Knowledge"
+  description: "Real-time AI overlay for contact centre agents — surfacing relevant knowledge articles, suggested responses and next-best actions during live customer interactions."
+  impact: "High"
+  impact_label: "AHT reduction"
+  kpis:
+    - "Average handle time reduction (%)"
+    - "First contact resolution rate (%)"
+    - "Knowledge article utilisation rate (%)"
+
+- name: "Sentiment & Issue Trend Analysis"
+  business: "Customer Service"
+  process: "Analytics"
+  description: "NLP analysis of contact centre transcripts and survey data to identify emerging issues, sentiment trends and product quality signals before they escalate."
+  impact: "Medium"
+  impact_label: "Insight-driven"
+  kpis:
+    - "Time to detect emerging issue trend (days)"
+    - "Net Promoter Score (NPS) trajectory"
+    - "Volume of issues escalated before detection vs after (%)"
 
 - name: "Customer Churn Prediction"
   business: "Customer Service"
@@ -183,6 +225,10 @@
   description: "ML models identify customers showing early churn signals from usage patterns, support interactions and engagement data — enabling proactive outreach before cancellation decisions are made."
   impact: "High"
   impact_label: "Proven at scale"
+  kpis:
+    - "Churn rate (%)"
+    - "Model prediction accuracy (%)"
+    - "Retention intervention conversion rate (%)"
 
 - name: "Personalised Response Generation"
   business: "Customer Service"
@@ -190,6 +236,45 @@
   description: "AI drafts personalised email and chat responses for human agents to review and send — reducing average handle time while maintaining brand tone and regulatory compliance."
   impact: "High"
   impact_label: "Widely deployed"
+  kpis:
+    - "Draft acceptance rate (% used with minor or no edits)"
+    - "Average handle time (minutes)"
+    - "Compliance breach rate on outbound communications (%)"
+
+# ── IT ────────────────────────────────────────────────
+
+- name: "IT Service Desk Automation"
+  business: "IT"
+  process: "Automation"
+  description: "AI classifies, routes and resolves Tier 1 IT tickets — password resets, access requests, known issues — freeing service desk agents for complex problem resolution."
+  impact: "High"
+  impact_label: "Fast ROI"
+  kpis:
+    - "Ticket auto-resolution rate (%)"
+    - "Mean time to resolve Tier 1 tickets (hours)"
+    - "Service desk cost per ticket (£)"
+
+- name: "Code Generation & Review"
+  business: "IT"
+  process: "Generation"
+  description: "AI-assisted development tooling that generates boilerplate code, reviews pull requests for bugs and security issues, and suggests refactoring improvements."
+  impact: "High"
+  impact_label: "Productivity gain"
+  kpis:
+    - "Developer velocity (story points per sprint)"
+    - "Defect escape rate (bugs reaching production)"
+    - "Code review cycle time (hours from PR open to merge)"
+
+- name: "Technical Documentation Assistant"
+  business: "IT"
+  process: "Knowledge"
+  description: "RAG-powered assistant that answers developer questions by surfacing relevant API docs, runbooks and architectural decision records from the internal knowledge base."
+  impact: "Medium"
+  impact_label: "Developer enabler"
+  kpis:
+    - "Developer query resolution time (minutes)"
+    - "Documentation search deflection rate (%)"
+    - "Onboarding time to first productive commit (days)"
 
 - name: "Incident Detection & Auto-Remediation"
   business: "IT"
@@ -197,6 +282,45 @@
   description: "AI monitors system health metrics, detects anomalies, diagnoses root causes and executes pre-approved remediation playbooks — resolving a growing proportion of incidents before they reach the service desk."
   impact: "High"
   impact_label: "Strategic value"
+  kpis:
+    - "Mean time to detect (MTTD — minutes)"
+    - "Mean time to resolve (MTTR — minutes)"
+    - "% of incidents auto-remediated without human intervention"
+
+# ── LEGAL ─────────────────────────────────────────────
+
+- name: "Contract Review & Abstraction"
+  business: "Legal"
+  process: "Automation"
+  description: "AI reviews contracts to extract key clauses, flag non-standard terms and identify risks — compressing contract review cycles from days to minutes for standard agreements."
+  impact: "High"
+  impact_label: "Time savings"
+  kpis:
+    - "Contract review cycle time (days)"
+    - "Clause extraction accuracy (%)"
+    - "Outside counsel spend on routine review (£ per month)"
+
+- name: "Standard Agreement Drafting"
+  business: "Legal"
+  process: "Generation"
+  description: "Generates first drafts of NDAs, MSAs and standard service agreements from a structured brief — reducing outside counsel dependency for routine legal documents."
+  impact: "Medium"
+  impact_label: "Cost reduction"
+  kpis:
+    - "Time to first draft (hours)"
+    - "Legal review time per document (hours)"
+    - "Outside counsel cost per standard agreement (£)"
+
+- name: "Regulatory Change Monitoring"
+  business: "Legal"
+  process: "Analytics"
+  description: "Continuous monitoring of regulatory publications and case law to alert legal and compliance teams to relevant changes and their potential business impact."
+  impact: "High"
+  impact_label: "Compliance value"
+  kpis:
+    - "Time to detect relevant regulatory change (days)"
+    - "% of regulatory changes identified proactively vs reactively"
+    - "Compliance breach incidents per quarter"
 
 - name: "Compliance Document Generation"
   business: "Legal"
@@ -204,6 +328,10 @@
   description: "Generates compliance reports, data processing agreements and regulatory submissions from structured inputs — reducing the time legal and compliance teams spend on routine documentation."
   impact: "Medium"
   impact_label: "Time saving"
+  kpis:
+    - "Document production time (hours per report)"
+    - "Review and sign-off cycle time (days)"
+    - "Error rate on submitted compliance documents (%)"
 
 - name: "Litigation Risk Assessment"
   business: "Legal"
@@ -211,3 +339,7 @@
   description: "AI analyses case facts, precedents and jurisdiction patterns to produce a litigation risk score and recommended resolution strategy — supporting faster, more consistent legal decision-making."
   impact: "Medium"
   impact_label: "Emerging · High value"
+  kpis:
+    - "Time to produce risk assessment (hours)"
+    - "Assessment accuracy vs actual outcome (%)"
+    - "Early resolution rate (% of cases settled before litigation)"

@@ -63,6 +63,14 @@ permalink: /use-cases/
           <span class="uc-tag">{{ uc.business }}</span>
           <span class="uc-tag">{{ uc.process }}</span>
         </div>
+        {% if uc.kpis %}
+        <div class="uc-kpis">
+          <div class="uc-kpis-label">Key KPIs</div>
+          {% for kpi in uc.kpis %}
+          <div class="uc-kpi-item">{{ kpi }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
       </div>
       {% endfor %}
     </div>

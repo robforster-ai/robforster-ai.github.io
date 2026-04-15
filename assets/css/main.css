@@ -1574,6 +1574,47 @@ body.geocities .geocities-construction { display: block; }
 
 body.geocities .geocities-counter { display: block; }
 
+/* --- Use Case KPIs ----------------------------------------- */
+
+.uc-kpis {
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--rule);
+}
+
+.uc-kpis-label {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.uc-kpi-item {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  padding: 0.2rem 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+.uc-kpi-item::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 0.35rem;
+}
+
+/* Hide KPIs on homepage use case preview section */
+.usecases-preview .uc-kpis { display: none; }
+
 /* --- Cursor sparkle trail ---------------------------------- */
 .geo-sparkle {
   position: fixed;
