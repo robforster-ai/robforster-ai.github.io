@@ -1,0 +1,730 @@
+---
+layout: default
+title: "Enterprise AI ROI Calculator"
+description: "Estimate the financial return of an AI use case based on your team size, process costs and expected efficiency gains."
+---
+
+<style>
+/* ── ROI Calculator ───────────────────────────────────────── */
+
+.roi-hero {
+  background: var(--warm);
+  border-bottom: 1px solid var(--rule);
+  padding: 4rem 0 3rem;
+}
+.roi-hero-lead {
+  font-size: 1.05rem;
+  max-width: 60ch;
+  color: var(--ink-soft);
+  margin-top: 1rem;
+  line-height: 1.75;
+}
+
+.roi-section { padding: 4rem 0 5rem; }
+
+.roi-layout {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ── Input groups ─────────────────────────────────────────── */
+
+.roi-group { margin-bottom: 2.5rem; }
+
+.roi-group-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--gold);
+  display: inline-block;
+}
+
+.roi-field { margin-bottom: 1.75rem; }
+
+.roi-field-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.roi-field-name {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.4;
+}
+
+.roi-field-val {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Sliders ──────────────────────────────────────────────── */
+
+input[type="range"].roi-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+  background: linear-gradient(
+    to right,
+    var(--gold) 0%,
+    var(--gold) var(--fill, 0%),
+    var(--rule) var(--fill, 0%),
+    var(--rule) 100%
+  );
+}
+
+input[type="range"].roi-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px; height: 20px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: 3px solid var(--page);
+  box-shadow: 0 0 0 1.5px var(--gold);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+input[type="range"].roi-slider:hover::-webkit-slider-thumb { transform: scale(1.15); }
+input[type="range"].roi-slider:focus::-webkit-slider-thumb { transform: scale(1.15); }
+
+input[type="range"].roi-slider::-moz-range-thumb {
+  width: 20px; height: 20px;
+  background: var(--gold);
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="range"].roi-slider::-moz-range-track {
+  height: 4px; border-radius: 2px; background: var(--rule);
+}
+
+/* ── Select dropdown ──────────────────────────────────────── */
+
+.roi-select-wrap { position: relative; }
+
+.roi-select {
+  width: 100%;
+  padding: 0.65rem 2.5rem 0.65rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--ink);
+  background: var(--page);
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius);
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color var(--transition);
+}
+
+.roi-select:hover, .roi-select:focus { outline: none; border-color: var(--gold); }
+
+.roi-select-arrow {
+  position: absolute;
+  right: 0.9rem;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--ink-soft);
+}
+
+/* ── Efficiency hint ──────────────────────────────────────── */
+
+.roi-efficiency-hint {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  font-style: italic;
+  margin-top: 0.35rem;
+  line-height: 1.5;
+}
+
+/* ── Complexity toggles ───────────────────────────────────── */
+
+.roi-complexity-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.roi-complexity-btn {
+  padding: 0.65rem 0.4rem;
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--page);
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ink-soft);
+  cursor: pointer;
+  text-align: center;
+  transition: all var(--transition);
+  line-height: 1.35;
+}
+
+.roi-complexity-btn .sub {
+  display: block;
+  font-size: 0.7rem;
+  opacity: 0.7;
+  font-weight: 400;
+  margin-top: 0.15rem;
+}
+
+.roi-complexity-btn:hover { border-color: var(--gold); color: var(--ink); }
+.roi-complexity-btn.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+.roi-complexity-btn.active .sub { opacity: 0.85; }
+
+/* ── Results panel ────────────────────────────────────────── */
+
+.roi-results {
+  position: sticky;
+  top: 80px;
+}
+
+/* ── Tiles ────────────────────────────────────────────────── */
+
+.roi-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.roi-tile {
+  background: var(--page);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.roi-tile:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+.roi-tile-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+
+.roi-tile-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--ink);
+  line-height: 1.1;
+}
+
+/* Primary tile */
+.roi-tile-primary {
+  border-color: rgba(176,141,87,0.35);
+  background: rgba(176,141,87,0.05);
+}
+
+.roi-tile-primary .roi-tile-label { color: var(--gold); opacity: 0.8; }
+
+.roi-tile-primary .roi-tile-val {
+  font-size: clamp(1.7rem, 2.2vw, 2.4rem);
+  color: var(--gold);
+}
+
+/* ── Chart ────────────────────────────────────────────────── */
+
+.roi-chart-box {
+  background: var(--page);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.roi-chart-box-title {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 1.25rem;
+}
+
+/* ── Disclaimer ───────────────────────────────────────────── */
+
+.roi-disclaimer {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  opacity: 0.65;
+  line-height: 1.65;
+  font-style: italic;
+}
+
+/* ── CTA ──────────────────────────────────────────────────── */
+
+.roi-cta {
+  background: var(--warm);
+  border-top: 1px solid var(--rule);
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.roi-cta h2 { margin-bottom: 0.75rem; }
+.roi-cta p { max-width: 46ch; margin: 0 auto 2rem; font-size: 1rem; }
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  .roi-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .roi-results { position: static; }
+}
+
+@media (max-width: 768px) {
+  .roi-tiles { grid-template-columns: 1fr 1fr; }
+  .roi-tile-primary { grid-column: 1 / -1; }
+  .roi-tile-primary .roi-tile-val { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .roi-complexity-row { grid-template-columns: 1fr; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════ -->
+<div class="roi-hero reveal">
+  <div class="container">
+    <p class="section-label">Tool</p>
+    <h1>Enterprise AI ROI Calculator</h1>
+    <p class="roi-hero-lead">Estimate the financial return of an AI use case based on your team size, process costs and expected efficiency gains. All figures are illustrative — designed to support business case thinking.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     CALCULATOR
+═══════════════════════════════════════════════════════ -->
+<section class="roi-section">
+  <div class="container">
+    <div class="roi-layout">
+
+      <!-- ── INPUTS ────────────────────────────────────── -->
+      <div class="roi-inputs">
+
+        <!-- YOUR TEAM -->
+        <div class="roi-group">
+          <p class="roi-group-title">Your Team</p>
+
+          <div class="roi-field">
+            <div class="roi-field-top">
+              <span class="roi-field-name">Number of people involved in this process</span>
+              <span class="roi-field-val" id="valPeople">50</span>
+            </div>
+            <input type="range" class="roi-slider" id="sliderPeople" min="1" max="500" value="50" step="1">
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-top">
+              <span class="roi-field-name">Average fully-loaded annual salary per person</span>
+              <span class="roi-field-val" id="valSalary">£50,000</span>
+            </div>
+            <input type="range" class="roi-slider" id="sliderSalary" min="20000" max="150000" value="50000" step="1000">
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-top">
+              <span class="roi-field-name">Hours per week each person spends on this process</span>
+              <span class="roi-field-val" id="valHours">10 hrs</span>
+            </div>
+            <input type="range" class="roi-slider" id="sliderHours" min="1" max="40" value="10" step="1">
+          </div>
+        </div>
+
+        <!-- YOUR PROCESS -->
+        <div class="roi-group">
+          <p class="roi-group-title">Your Process</p>
+
+          <div class="roi-field">
+            <div class="roi-field-top">
+              <span class="roi-field-name">Use case type</span>
+            </div>
+            <div class="roi-select-wrap">
+              <select class="roi-select" id="selectUseCase">
+                <option value="doc">Document Processing &amp; Review</option>
+                <option value="data">Data Entry &amp; Validation</option>
+                <option value="report">Reporting &amp; Analysis</option>
+                <option value="query">Customer Query Handling</option>
+                <option value="knowledge">Knowledge Search &amp; Retrieval</option>
+                <option value="invoice">Invoice &amp; Finance Processing</option>
+                <option value="contract">Contract Review</option>
+                <option value="compliance">Compliance Monitoring</option>
+              </select>
+              <svg class="roi-select-arrow" width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path d="M1 1L6 6L11 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-top">
+              <span class="roi-field-name">Expected AI efficiency gain</span>
+              <span class="roi-field-val" id="valEfficiency">60%</span>
+            </div>
+            <input type="range" class="roi-slider" id="sliderEfficiency" min="20" max="90" value="60" step="1">
+            <p class="roi-efficiency-hint" id="efficiencyHint">Significant — AI automates the majority of the process</p>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-field-top">
+              <span class="roi-field-name">Implementation complexity</span>
+            </div>
+            <div class="roi-complexity-row">
+              <button class="roi-complexity-btn" data-complexity="simple">
+                Simple
+                <span class="sub">3–6 months</span>
+              </button>
+              <button class="roi-complexity-btn active" data-complexity="standard">
+                Standard
+                <span class="sub">6–12 months</span>
+              </button>
+              <button class="roi-complexity-btn" data-complexity="complex">
+                Complex
+                <span class="sub">12–18 months</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /.roi-inputs -->
+
+      <!-- ── RESULTS ───────────────────────────────────── -->
+      <div class="roi-results">
+
+        <!-- Tiles: 3x2 grid -->
+        <div class="roi-tiles">
+          <div class="roi-tile roi-tile-primary">
+            <div class="roi-tile-label">Annual Cost Saving</div>
+            <div class="roi-tile-val" id="tileCostSaving">£0</div>
+          </div>
+          <div class="roi-tile">
+            <div class="roi-tile-label">Hours Saved Per Year</div>
+            <div class="roi-tile-val" id="tileHoursSaved">0</div>
+          </div>
+          <div class="roi-tile">
+            <div class="roi-tile-label">3-Year Net Benefit</div>
+            <div class="roi-tile-val" id="tileNetBenefit">£0</div>
+          </div>
+          <div class="roi-tile">
+            <div class="roi-tile-label">3-Year ROI</div>
+            <div class="roi-tile-val" id="tileROI">0%</div>
+          </div>
+          <div class="roi-tile">
+            <div class="roi-tile-label">Estimated Payback</div>
+            <div class="roi-tile-val" id="tilePayback">— months</div>
+          </div>
+          <div class="roi-tile">
+            <div class="roi-tile-label">Time to First Value</div>
+            <div class="roi-tile-val" id="tileTimeToValue">9 months</div>
+          </div>
+        </div>
+
+        <!-- Bar chart: pure CSS + JS, no library -->
+        <div class="roi-chart-box">
+          <div class="roi-chart-box-title">3-Year Cumulative Net Benefit</div>
+          <!-- Chart area: 220px total; bottom 24px reserved for year labels -->
+          <div id="roiChartArea" style="position:relative; height:220px; margin-bottom:0.5rem;">
+
+            <!-- Bars wrapper (excludes year-label space) -->
+            <div id="roiBarsWrap" style="position:absolute; top:0; left:0; right:0; bottom:24px; display:flex; gap:12px;">
+
+              <!-- Year 1 -->
+              <div style="flex:1; position:relative;" id="roiBarCol1">
+                <div id="roiBarAmt1" style="position:absolute; width:100%; text-align:center; font-size:0.75rem; font-weight:600; line-height:1; transition:bottom 0.4s ease;"></div>
+                <div id="roiBarPos1" style="position:absolute; width:100%; border-radius:3px 3px 0 0; transition:height 0.4s ease, bottom 0.4s ease; display:none;"></div>
+                <div id="roiBarNeg1" style="position:absolute; width:100%; border-radius:0 0 3px 3px; background:var(--ink-soft); opacity:0.3; transition:height 0.4s ease, bottom 0.4s ease; display:none;"></div>
+              </div>
+
+              <!-- Year 2 -->
+              <div style="flex:1; position:relative;" id="roiBarCol2">
+                <div id="roiBarAmt2" style="position:absolute; width:100%; text-align:center; font-size:0.75rem; font-weight:600; line-height:1; color:var(--gold); transition:bottom 0.4s ease;"></div>
+                <div id="roiBarPos2" style="position:absolute; width:100%; border-radius:3px 3px 0 0; background:var(--gold); transition:height 0.4s ease, bottom 0.4s ease; display:none;"></div>
+                <div id="roiBarNeg2" style="position:absolute; width:100%; border-radius:0 0 3px 3px; background:var(--ink-soft); opacity:0.3; transition:height 0.4s ease, bottom 0.4s ease; display:none;"></div>
+              </div>
+
+              <!-- Year 3 -->
+              <div style="flex:1; position:relative;" id="roiBarCol3">
+                <div id="roiBarAmt3" style="position:absolute; width:100%; text-align:center; font-size:0.75rem; font-weight:600; line-height:1; color:var(--gold); transition:bottom 0.4s ease;"></div>
+                <div id="roiBarPos3" style="position:absolute; width:100%; border-radius:3px 3px 0 0; background:var(--gold); transition:height 0.4s ease, bottom 0.4s ease; display:none;"></div>
+                <div id="roiBarNeg3" style="position:absolute; width:100%; border-radius:0 0 3px 3px; background:var(--ink-soft); opacity:0.3; transition:height 0.4s ease, bottom 0.4s ease; display:none;"></div>
+              </div>
+
+            </div><!-- /#roiBarsWrap -->
+
+            <!-- Year labels -->
+            <div style="position:absolute; bottom:0; left:0; right:0; height:24px; display:flex; gap:12px;">
+              <div style="flex:1; text-align:center; font-size:0.7rem; font-weight:600; color:var(--ink-soft); letter-spacing:0.05em; line-height:24px;">Year 1</div>
+              <div style="flex:1; text-align:center; font-size:0.7rem; font-weight:600; color:var(--ink-soft); letter-spacing:0.05em; line-height:24px;">Year 2</div>
+              <div style="flex:1; text-align:center; font-size:0.7rem; font-weight:600; color:var(--ink-soft); letter-spacing:0.05em; line-height:24px;">Year 3</div>
+            </div>
+
+            <!-- Zero line (positioned by JS) -->
+            <div id="roiZeroRule" style="position:absolute; left:0; right:0; height:1px; background:var(--rule);"></div>
+
+          </div><!-- /#roiChartArea -->
+        </div><!-- /.roi-chart-box -->
+
+        <!-- Disclaimer -->
+        <p class="roi-disclaimer">These figures are indicative estimates based on industry benchmarks and the inputs provided. Actual results will vary based on process complexity, change management effectiveness, and implementation quality. This tool is intended to support business case thinking, not replace detailed analysis.</p>
+
+      </div><!-- /.roi-results -->
+
+    </div><!-- /.roi-layout -->
+  </div><!-- /.container -->
+</section>
+
+<!-- ═══════════════════════════════════════════════════════
+     CTA
+═══════════════════════════════════════════════════════ -->
+<section class="roi-cta reveal">
+  <div class="container">
+    <h2>Want a more detailed analysis?</h2>
+    <p>Get in touch to discuss a tailored business case for your organisation.</p>
+    <a href="https://www.linkedin.com/in/forster1/" target="_blank" rel="noopener noreferrer" class="btn btn-blue">Connect on LinkedIn</a>
+  </div>
+</section>
+
+<script>
+(function () {
+
+  /* ── Number helpers ─────────────────────────── */
+
+  function fmtInt(n) {
+    return Math.round(n).toLocaleString('en-GB');
+  }
+
+  function fmtGBP(n) {
+    if (!isFinite(n)) return '—';
+    var abs = Math.abs(Math.round(n));
+    return (n < 0 ? '-£' : '£') + abs.toLocaleString('en-GB');
+  }
+
+  function fmtGBPShort(n) {
+    var abs = Math.abs(n);
+    var s;
+    if (abs >= 1000000) {
+      s = '£' + (abs / 1000000).toFixed(1) + 'M';
+    } else if (abs >= 1000) {
+      s = '£' + Math.round(abs / 1000) + 'k';
+    } else {
+      s = '£' + Math.round(abs);
+    }
+    return n < 0 ? ('-' + s) : s;
+  }
+
+  /* ── Slider fill ────────────────────────────── */
+
+  function setFill(input) {
+    var min = parseFloat(input.min) || 0;
+    var max = parseFloat(input.max) || 100;
+    var pct = ((parseFloat(input.value) - min) / (max - min)) * 100;
+    input.style.setProperty('--fill', pct.toFixed(1) + '%');
+  }
+
+  /* ── Efficiency hint ────────────────────────── */
+
+  var EFF_HINTS = [
+    [80, 90, 'Transformative — near-full automation with human oversight'],
+    [60, 79, 'Significant — AI automates the majority of the process'],
+    [40, 59, 'Moderate — AI handles routine cases, humans handle exceptions'],
+    [20, 39, 'Conservative — AI assists but humans lead']
+  ];
+
+  function effHint(pct) {
+    for (var i = 0; i < EFF_HINTS.length; i++) {
+      if (pct >= EFF_HINTS[i][0] && pct <= EFF_HINTS[i][1]) return EFF_HINTS[i][2];
+    }
+    return '';
+  }
+
+  /* ── Complexity ─────────────────────────────── */
+
+  var complexity = 'standard';
+
+  document.querySelectorAll('.roi-complexity-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.roi-complexity-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      complexity = btn.getAttribute('data-complexity');
+      calculate();
+    });
+  });
+
+  /* ── Core calculation ───────────────────────── */
+
+  function calculate() {
+    var people  = parseInt(document.getElementById('sliderPeople').value, 10);
+    var salary  = parseInt(document.getElementById('sliderSalary').value, 10);
+    var hpw     = parseInt(document.getElementById('sliderHours').value, 10);
+    var effPct  = parseInt(document.getElementById('sliderEfficiency').value, 10);
+    var eff     = effPct / 100;
+
+    var annualHours = people * hpw * 52;
+    var annualCost  = (annualHours / 2080) * people * salary;
+    var hoursSaved  = annualHours * eff;
+    var costSaving  = annualCost  * eff;
+
+    var mult, cap, ttv;
+    if (complexity === 'simple')   { mult = 0.05; cap = 5000000;  ttv = 4; }
+    else if (complexity === 'standard') { mult = 0.10; cap = 10000000; ttv = 9; }
+    else                           { mult = 0.18; cap = 20000000; ttv = 15; }
+
+    var implCost   = Math.min(salary * people * mult, cap);
+    var payback    = costSaving > 0 ? implCost / (costSaving / 12) : Infinity;
+    var roi3yr     = implCost  > 0 ? ((costSaving * 3 - implCost) / implCost) * 100 : 0;
+    var net3yr     = costSaving * 3 - implCost;
+
+    /* tiles */
+    document.getElementById('tileCostSaving').textContent  = fmtGBP(costSaving);
+    document.getElementById('tileHoursSaved').textContent  = fmtInt(hoursSaved) + ' hrs';
+    document.getElementById('tileNetBenefit').textContent  = fmtGBP(net3yr);
+    document.getElementById('tileROI').textContent         = isFinite(roi3yr) ? Math.round(roi3yr) + '%' : '—';
+    document.getElementById('tileTimeToValue').textContent = ttv + ' months';
+    document.getElementById('tilePayback').textContent     = isFinite(payback) && payback > 0
+      ? Math.ceil(payback) + ' months' : '—';
+
+    updateChart(costSaving, implCost);
+  }
+
+  /* ── Chart ──────────────────────────────────── */
+
+  function updateChart(costSaving, implCost) {
+    var y1 = costSaving     - implCost;
+    var y2 = costSaving * 2 - implCost;
+    var y3 = costSaving * 3 - implCost;
+
+    /* Usable bar area height (chart 220px - year labels 24px) */
+    var BAR_H  = 196;
+    var YEAR_H = 24;
+
+    var maxVal = Math.max(y1, y2, y3, 0.01);
+    var minVal = Math.min(y1, y2, y3, 0);
+    var range  = maxVal - minVal;
+    if (range < 0.01) range = 0.01;
+
+    /* Zero line: position from bottom of bars wrapper */
+    var zeroInBars  = (Math.abs(minVal) / range) * BAR_H;
+    /* Zero rule: position from bottom of chart area (includes YEAR_H) */
+    var zeroInChart = YEAR_H + zeroInBars;
+
+    document.getElementById('roiZeroRule').style.bottom = zeroInChart + 'px';
+
+    var items = [
+      { val: y1, posId: 'roiBarPos1', negId: 'roiBarNeg1', amtId: 'roiBarAmt1', isY1: true  },
+      { val: y2, posId: 'roiBarPos2', negId: 'roiBarNeg2', amtId: 'roiBarAmt2', isY1: false },
+      { val: y3, posId: 'roiBarPos3', negId: 'roiBarNeg3', amtId: 'roiBarAmt3', isY1: false }
+    ];
+
+    items.forEach(function (d) {
+      var posEl = document.getElementById(d.posId);
+      var negEl = document.getElementById(d.negId);
+      var amtEl = document.getElementById(d.amtId);
+
+      var posH = (Math.max(d.val, 0) / range) * BAR_H;
+      var negH = (Math.abs(Math.min(d.val, 0)) / range) * BAR_H;
+
+      /* Positive segment */
+      if (posH >= 1) {
+        posEl.style.display    = 'block';
+        posEl.style.height     = Math.max(posH, 4) + 'px';
+        posEl.style.bottom     = zeroInBars + 'px';
+        /* Year 1 positive = gold; Years 2+3 = gold */
+        posEl.style.background = 'var(--gold)';
+        posEl.style.opacity    = '1';
+      } else {
+        posEl.style.display = 'none';
+      }
+
+      /* Negative segment (Year 1 below zero = muted) */
+      if (negH >= 1) {
+        var adjNegH = Math.max(negH, 4);
+        negEl.style.display = 'block';
+        negEl.style.height  = adjNegH + 'px';
+        negEl.style.bottom  = (zeroInBars - adjNegH) + 'px';
+      } else {
+        negEl.style.display = 'none';
+      }
+
+      /* Amount label */
+      amtEl.textContent = fmtGBPShort(d.val);
+      if (d.val >= 0) {
+        var abovePosH = Math.max(posH, d.val > 0 ? 4 : 0);
+        amtEl.style.bottom = (zeroInBars + abovePosH + 4) + 'px';
+        amtEl.style.color  = 'var(--gold)';
+      } else {
+        var belowNegH = Math.max(negH, 4);
+        amtEl.style.bottom = (zeroInBars - belowNegH - 16) + 'px';
+        amtEl.style.color  = 'var(--ink-soft)';
+      }
+    });
+  }
+
+  /* ── Slider wiring ──────────────────────────── */
+
+  var SLIDERS = [
+    {
+      id: 'sliderPeople',
+      valId: 'valPeople',
+      fmt: function (v) { return parseInt(v).toLocaleString('en-GB'); }
+    },
+    {
+      id: 'sliderSalary',
+      valId: 'valSalary',
+      fmt: function (v) { return '£' + parseInt(v).toLocaleString('en-GB'); }
+    },
+    {
+      id: 'sliderHours',
+      valId: 'valHours',
+      fmt: function (v) { return v + ' hrs'; }
+    },
+    {
+      id: 'sliderEfficiency',
+      valId: 'valEfficiency',
+      fmt: function (v) { return v + '%'; }
+    }
+  ];
+
+  SLIDERS.forEach(function (s) {
+    var el = document.getElementById(s.id);
+    setFill(el);
+    el.addEventListener('input', function () {
+      setFill(el);
+      document.getElementById(s.valId).textContent = s.fmt(el.value);
+      if (s.id === 'sliderEfficiency') {
+        document.getElementById('efficiencyHint').textContent = effHint(parseInt(el.value, 10));
+      }
+      calculate();
+    });
+  });
+
+  document.getElementById('selectUseCase').addEventListener('change', calculate);
+
+  /* ── Init ───────────────────────────────────── */
+  calculate();
+
+}());
+</script>
