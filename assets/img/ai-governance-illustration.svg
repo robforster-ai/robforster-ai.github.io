@@ -1,0 +1,137 @@
+<svg width="1200" height="680" viewBox="0 0 1200 680" xmlns="http://www.w3.org/2000/svg" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="topBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#B08D57"/>
+      <stop offset="100%" stop-color="#2A4A7F"/>
+    </linearGradient>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2A4A7F"/>
+      <stop offset="100%" stop-color="#1d3666"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ── Gradient top bar ────────────────────────────────── -->
+  <rect width="1200" height="6" fill="url(#topBar)"/>
+
+  <!-- ── Layer backgrounds ──────────────────────────────── -->
+  <!-- Strategic layer: warm ivory -->
+  <rect x="0" y="6" width="1200" height="194" fill="#F5F3EE"/>
+  <!-- Governance layer: navy -->
+  <rect x="0" y="200" width="1200" height="272" fill="url(#navyGrad)"/>
+  <!-- Operational layer: blue-lt -->
+  <rect x="0" y="472" width="1200" height="160" fill="#E8EDF5"/>
+  <!-- Forum footer: deep navy -->
+  <rect x="0" y="632" width="1200" height="48" fill="#141f3d"/>
+
+  <!-- ── Layer dividers ─────────────────────────────────── -->
+  <line x1="0" y1="200" x2="1200" y2="200" stroke="#D4B483" stroke-width="1" opacity="0.4"/>
+  <line x1="0" y1="472" x2="1200" y2="472" stroke="#4a6aa8" stroke-width="1" opacity="0.5"/>
+  <line x1="0" y1="632" x2="1200" y2="632" stroke="#B08D57" stroke-width="1" opacity="0.5"/>
+
+  <!-- ════════════════════════════════════════════════════
+       STRATEGIC LAYER
+  ════════════════════════════════════════════════════ -->
+  <!-- Layer label -->
+  <text x="68" y="38" font-size="9.5" font-weight="700" letter-spacing="3.5" fill="#B08D57">STRATEGIC</text>
+  <line x1="68" y1="43" x2="162" y2="43" stroke="#B08D57" stroke-width="1" opacity="0.5"/>
+
+  <!-- Executive Sponsor card -->
+  <rect x="396" y="52" width="408" height="110" rx="8" fill="white" stroke="#B08D57" stroke-width="1.5"/>
+  <!-- Left gold accent bar on card -->
+  <rect x="396" y="52" width="5" height="110" rx="2" fill="#B08D57"/>
+  <text x="622" y="96" font-size="14" font-weight="700" fill="#2A4A7F" text-anchor="middle" letter-spacing="1">EXECUTIVE SPONSOR</text>
+  <line x1="440" y1="106" x2="804" y2="106" stroke="#E2E0DA" stroke-width="1"/>
+  <text x="622" y="126" font-size="11.5" fill="#7A7974" text-anchor="middle">CTO · CDO · Chief AI Officer</text>
+  <text x="622" y="146" font-size="10.5" fill="#B08D57" text-anchor="middle">Strategic mandate · Risk appetite · Board reporting</text>
+
+  <!-- Down-arrow connector to governance layer -->
+  <line x1="600" y1="162" x2="600" y2="198" stroke="#B08D57" stroke-width="1.5"/>
+  <polygon points="594,196 606,196 600,205" fill="#B08D57"/>
+
+
+  <!-- ════════════════════════════════════════════════════
+       GOVERNANCE LAYER
+  ════════════════════════════════════════════════════ -->
+  <!-- Layer label -->
+  <text x="68" y="228" font-size="9.5" font-weight="700" letter-spacing="3.5" fill="#D4B483">GOVERNANCE</text>
+  <line x1="68" y1="233" x2="176" y2="233" stroke="#D4B483" stroke-width="1" opacity="0.5"/>
+
+  <!-- Horizontal connector spanning all three governance cards -->
+  <line x1="182" y1="350" x2="1018" y2="350" stroke="#B08D57" stroke-width="1" opacity="0.35"/>
+
+  <!-- Card 1: AI Programme Director -->
+  <rect x="56" y="248" width="336" height="152" rx="7" fill="rgba(255,255,255,0.08)" stroke="rgba(212,180,131,0.4)" stroke-width="1.5"/>
+  <text x="224" y="284" font-size="12.5" font-weight="700" fill="white" text-anchor="middle" letter-spacing="0.8">AI PROGRAMME DIRECTOR</text>
+  <line x1="96" y1="294" x2="352" y2="294" stroke="rgba(176,141,87,0.4)" stroke-width="1"/>
+  <text x="224" y="316" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Delivery · Scope · Resources</text>
+  <text x="224" y="334" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Programme risk register</text>
+  <text x="224" y="352" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Governance gates · Cadence</text>
+  <text x="224" y="374" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Business change alignment</text>
+
+  <!-- Vertical connector from Exec Sponsor to Programme Director -->
+  <line x1="224" y1="248" x2="224" y2="216" stroke="#B08D57" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- Card 2: AI Ethics Lead (centre, gold-highlighted) -->
+  <rect x="432" y="248" width="336" height="152" rx="7" fill="rgba(176,141,87,0.12)" stroke="#B08D57" stroke-width="1.5"/>
+  <text x="600" y="284" font-size="12.5" font-weight="700" fill="white" text-anchor="middle" letter-spacing="0.8">AI ETHICS LEAD</text>
+  <line x1="472" y1="294" x2="728" y2="294" stroke="rgba(176,141,87,0.6)" stroke-width="1"/>
+  <text x="600" y="316" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Responsible AI framework</text>
+  <text x="600" y="334" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Ethical impact assessments</text>
+  <text x="600" y="352" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Bias testing · Oversight criteria</text>
+  <text x="600" y="374" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">AI incident response</text>
+
+  <!-- Vertical connector from Exec Sponsor to Ethics Lead -->
+  <line x1="600" y1="248" x2="600" y2="205" stroke="#B08D57" stroke-width="1" opacity="0.5"/>
+
+  <!-- Card 3: AI Risk & Controls -->
+  <rect x="808" y="248" width="336" height="152" rx="7" fill="rgba(255,255,255,0.08)" stroke="rgba(212,180,131,0.4)" stroke-width="1.5"/>
+  <text x="976" y="284" font-size="12.5" font-weight="700" fill="white" text-anchor="middle" letter-spacing="0.8">AI RISK & CONTROLS</text>
+  <line x1="848" y1="294" x2="1104" y2="294" stroke="rgba(176,141,87,0.4)" stroke-width="1"/>
+  <text x="976" y="316" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Model risk management</text>
+  <text x="976" y="334" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Risk taxonomy · KRI monitoring</text>
+  <text x="976" y="352" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Model inventory · Validation</text>
+  <text x="976" y="374" font-size="10.5" fill="rgba(255,255,255,0.65)" text-anchor="middle">Third-party vendor risk</text>
+
+  <!-- Vertical connector from Exec Sponsor to Risk owner -->
+  <line x1="976" y1="248" x2="976" y2="216" stroke="#B08D57" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/>
+
+  <!-- Downward connectors to operational layer -->
+  <line x1="340" y1="400" x2="340" y2="470" stroke="#B08D57" stroke-width="1" stroke-dasharray="3,3" opacity="0.45"/>
+  <line x1="860" y1="400" x2="860" y2="470" stroke="#B08D57" stroke-width="1" stroke-dasharray="3,3" opacity="0.45"/>
+
+
+  <!-- ════════════════════════════════════════════════════
+       OPERATIONAL LAYER
+  ════════════════════════════════════════════════════ -->
+  <!-- Layer label -->
+  <text x="68" y="498" font-size="9.5" font-weight="700" letter-spacing="3.5" fill="#2A4A7F">OPERATIONAL</text>
+  <line x1="68" y1="503" x2="176" y2="503" stroke="#2A4A7F" stroke-width="1" opacity="0.5"/>
+
+  <!-- Card 4: Data & AI Platform -->
+  <rect x="116" y="512" width="420" height="108" rx="7" fill="white" stroke="#2A4A7F" stroke-width="1.5"/>
+  <rect x="116" y="512" width="5" height="108" rx="2" fill="#2A4A7F"/>
+  <text x="338" y="548" font-size="13" font-weight="700" fill="#2A4A7F" text-anchor="middle" letter-spacing="0.8">DATA & AI PLATFORM</text>
+  <line x1="156" y1="558" x2="520" y2="558" stroke="#E2E0DA" stroke-width="1"/>
+  <text x="338" y="578" font-size="10.5" fill="#7A7974" text-anchor="middle">Data standards · Platform architecture · Versioning</text>
+  <text x="338" y="596" font-size="10.5" fill="#7A7974" text-anchor="middle">Security controls · Deployment governance</text>
+
+  <!-- Card 5: Business Process Owner -->
+  <rect x="664" y="512" width="420" height="108" rx="7" fill="white" stroke="#2A4A7F" stroke-width="1.5"/>
+  <rect x="664" y="512" width="5" height="108" rx="2" fill="#B08D57"/>
+  <text x="886" y="548" font-size="13" font-weight="700" fill="#2A4A7F" text-anchor="middle" letter-spacing="0.8">BUSINESS PROCESS OWNER</text>
+  <line x1="704" y1="558" x2="1068" y2="558" stroke="#E2E0DA" stroke-width="1"/>
+  <text x="886" y="578" font-size="10.5" fill="#7A7974" text-anchor="middle">Requirements · Change management · Adoption</text>
+  <text x="886" y="596" font-size="10.5" fill="#7A7974" text-anchor="middle">Production oversight · Outcome accountability</text>
+
+
+  <!-- ════════════════════════════════════════════════════
+       AI GOVERNANCE FORUM FOOTER
+  ════════════════════════════════════════════════════ -->
+  <text x="600" y="656" font-size="11.5" font-weight="700" fill="white" text-anchor="middle" letter-spacing="3">AI GOVERNANCE FORUM</text>
+  <text x="600" y="672" font-size="10" fill="rgba(255,255,255,0.45)" text-anchor="middle">Monthly · Pipeline Review · Production Performance · Issues &amp; Incidents</text>
+
+  <!-- Small gold dots flanking the forum title -->
+  <circle cx="316" cy="654" r="3" fill="#B08D57" opacity="0.6"/>
+  <circle cx="884" cy="654" r="3" fill="#B08D57" opacity="0.6"/>
+
+</svg>

@@ -4,7 +4,7 @@ title: "Why Enterprise AI Programmes Fail (It's Not the Technology)"
 date: 2026-04-03
 category: "Enterprise AI"
 excerpt: "Most enterprise AI programmes that fail do so not because the models are poor or the data is insufficient, but because of structural and organisational factors that no amount of technical sophistication can compensate for."
-featured: true
+featured: false
 image: "/assets/img/enterprise-ai-failure-illustration.svg"
 read_time: "8 min read"
 slug: "why-enterprise-ai-programmes-fail"

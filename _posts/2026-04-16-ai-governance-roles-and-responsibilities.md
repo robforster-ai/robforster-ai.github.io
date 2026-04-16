@@ -4,7 +4,8 @@ title: "AI Governance: The Roles Every Enterprise Programme Needs"
 date: 2026-04-16
 category: Governance
 excerpt: "Most enterprise AI programmes have a governance problem — not because nobody cares about oversight, but because the roles needed to provide it have never been properly defined."
-featured: false
+featured: true
+image: "/assets/img/ai-governance-illustration.svg"
 read_time: "9 min read"
 slug: "ai-governance-roles-and-responsibilities"
 ---
