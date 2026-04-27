@@ -1,16 +1,35 @@
 <footer class="footer">
-  <div class="footer-inner">
-    <span class="footer-name">Rob Forster</span>
-
-    <ul class="footer-links">
-      <li><a href="https://www.linkedin.com/in/forster1/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-      <li><a href="https://github.com/robforster-ai" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-      <li><a href="{{ '/feed.xml' | relative_url }}">RSS</a></li>
-      <li><a href="{{ '/about#contact' | relative_url }}">Contact</a></li>
-      <li><a href="{{ '/disclaimer' | relative_url }}">Disclaimer</a></li>
-    </ul>
-
-    <span class="footer-copy">&copy; {{ 'now' | date: "%Y" }} Rob Forster</span>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-brand-name">Rob <span>Forster</span></p>
+        <p class="footer-brand-desc">Practitioner writing on enterprise AI transformation and programme delivery. Views my own.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Read</p>
+        <a href="{{ '/writing' | relative_url }}">Latest essays</a>
+        <a href="{{ '/' | relative_url }}">Featured</a>
+        <a href="{{ '/writing' | relative_url }}">Archive</a>
+        <a href="{{ '/news' | relative_url }}">News</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Tools</p>
+        <a href="{{ '/use-cases' | relative_url }}">Use Case Library</a>
+        <a href="{{ '/roi-calculator' | relative_url }}">ROI Calculator</a>
+        <a href="{{ '/recommender' | relative_url }}">Recommender</a>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">About</p>
+        <a href="{{ '/about' | relative_url }}">Bio</a>
+        <a href="{{ '/about#contact' | relative_url }}">Connect</a>
+        <a href="https://www.linkedin.com/in/forster1/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+        <a href="{{ '/disclaimer' | relative_url }}">Disclaimer</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: "%Y" }} Rob Forster.</span>
+      <span class="footer-version">v.{{ 'now' | date: "%Y.%m" }} &middot; built with Jekyll</span>
+    </div>
   </div>
   <div class="geocities-toggle-wrap">
     <button class="geocities-btn" id="geocitiesBtn">&#x1F4BE; Geocities Mode</button>
