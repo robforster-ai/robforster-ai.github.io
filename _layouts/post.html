@@ -4,10 +4,10 @@ layout: default
 <main>
   <div class="container">
     <div class="post-header">
-      <span class="tag tag-gold">{{ page.category }}</span>
+      {% if page.category %}<span class="tag">{{ page.category }}</span>{% endif %}
       <h1>{{ page.title }}</h1>
       <div class="post-meta-row">
-        <span>{{ page.date | date: "%B %-d, %Y" }}</span>
+        <span>// {{ page.date | date: "%Y-%m-%d" }}</span>
         {% if page.read_time %}
         <span class="divider"></span>
         <span>{{ page.read_time }}</span>
@@ -20,7 +20,7 @@ layout: default
     </article>
 
     <div class="post-back">
-      <a href="{{ '/writing' | relative_url }}">&larr; Back to Writing</a>
+      <a href="{{ '/writing' | relative_url }}">&larr; back_to_archive.log</a>
     </div>
   </div>
 </main>

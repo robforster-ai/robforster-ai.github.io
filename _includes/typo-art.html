@@ -1,10 +1,6 @@
 {% assign _ta_cat = include.category | default: "ESSAY" %}
 {% assign _ta_cat_lower = _ta_cat | downcase | strip %}
-{% if include.title %}
-  {% assign _ta_source = include.title %}
-{% else %}
-  {% assign _ta_source = _ta_cat %}
-{% endif %}
+{% if include.title %}{% assign _ta_source = include.title %}{% else %}{% assign _ta_source = _ta_cat %}{% endif %}
 {% assign _ta_initial = _ta_source | split: " " | first %}
 <div class="typo-art" data-cat="{{ _ta_cat_lower }}"{% if include.big %} data-big{% endif %}>
   <span class="ta-initial" aria-hidden="true">{{ _ta_initial }}</span>

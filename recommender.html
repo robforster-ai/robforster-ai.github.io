@@ -1,293 +1,113 @@
 ---
 layout: default
-title: "AI Use Case Recommender"
-description: "Answer 3 questions to get personalised AI use case recommendations tailored to your business area and goals."
+title: "Use-case Recommender"
+permalink: /recommender/
+description: "Three questions. Get three enterprise AI use cases worth the budget."
 ---
 
-<script>
-var USE_CASES = {{ site.data.use-cases | jsonify }};
-</script>
+<main class="container sec">
+  <div class="sec-h"><h2>// USE_CASE.recommender</h2><span class="more">3_questions</span></div>
 
-<!-- Page header -->
-<div class="rec-page-header reveal">
-  <div class="container">
-    <p class="section-label">Interactive Tool</p>
-    <h1>AI Use Case Recommender</h1>
-    <p class="rec-lead">Answer three questions and get personalised recommendations from the use case library.</p>
+  <p style="font-family: var(--grid); font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; max-width: 64ch; margin: 0 0 32px;">
+    Three questions. Recommendations are filtered against the live use-case library — they're real cards, not generated text. Nothing leaves the browser.
+  </p>
+
+  <div class="wiz-step">
+    <h3>// 01 · BUSINESS_UNIT</h3>
+    <div class="choice-grid" data-q="biz">
+      <button class="choice" data-v="ops">Operations</button>
+      <button class="choice" data-v="finance">Finance</button>
+      <button class="choice" data-v="hr">HR</button>
+      <button class="choice" data-v="sales">Sales / Marketing</button>
+      <button class="choice" data-v="risk">Risk / Compliance</button>
+      <button class="choice" data-v="tech">Technology</button>
+    </div>
   </div>
-</div>
 
-<!-- Tool -->
-<section class="recommender-section">
-  <div class="container">
-    <div class="recommender-wrap">
+  <div class="wiz-step">
+    <h3>// 02 · WHAT_DO_YOU_WANT_THE_AI_TO_DO?</h3>
+    <div class="choice-grid" data-q="proc">
+      <button class="choice" data-v="extract">Extract data from documents</button>
+      <button class="choice" data-v="classify">Classify or triage incoming work</button>
+      <button class="choice" data-v="summarise">Summarise long content</button>
+      <button class="choice" data-v="route">Route or prioritise items</button>
+      <button class="choice" data-v="predict">Predict an outcome</button>
+      <button class="choice" data-v="generate">Generate copy or variants</button>
+      <button class="choice" data-v="search">Answer questions over knowledge</button>
+    </div>
+  </div>
 
-      <!-- Progress indicator -->
-      <div class="rec-progress" id="recProgress">
-        <div class="rec-progress-dots">
-          <span class="rec-dot active" id="recDot1"></span>
-          <span class="rec-connector" id="recConn1"></span>
-          <span class="rec-dot" id="recDot2"></span>
-          <span class="rec-connector" id="recConn2"></span>
-          <span class="rec-dot" id="recDot3"></span>
-        </div>
-        <p class="rec-step-label" id="recStepLabel">Step 1 of 3</p>
-      </div>
+  <div class="wiz-step">
+    <h3>// 03 · RISK_APPETITE</h3>
+    <div class="choice-grid" data-q="risk">
+      <button class="choice" data-v="Low">Low — start safe</button>
+      <button class="choice" data-v="Medium">Medium — managed risk OK</button>
+      <button class="choice" data-v="High">High — willing to push</button>
+    </div>
+  </div>
 
-      <!-- Step 1: Business area -->
-      <div class="rec-step" id="recStep1">
-        <h2 class="rec-question">What is your primary business area?</h2>
-        <div class="rec-options">
-          <button class="rec-option" data-step="1" data-value="Finance">
-            <span class="rec-option-name">Finance</span>
-          </button>
-          <button class="rec-option" data-step="1" data-value="HR">
-            <span class="rec-option-name">HR</span>
-          </button>
-          <button class="rec-option" data-step="1" data-value="Supply Chain">
-            <span class="rec-option-name">Supply Chain</span>
-          </button>
-          <button class="rec-option" data-step="1" data-value="Customer Service">
-            <span class="rec-option-name">Customer Service</span>
-          </button>
-          <button class="rec-option" data-step="1" data-value="IT">
-            <span class="rec-option-name">IT</span>
-          </button>
-          <button class="rec-option" data-step="1" data-value="Legal">
-            <span class="rec-option-name">Legal</span>
-          </button>
-          <button class="rec-option rec-option-span" data-step="1" data-value="all">
-            <span class="rec-option-name">Not sure / Cross-functional</span>
-            <span class="rec-option-sub">Show me use cases across all areas</span>
-          </button>
-        </div>
-      </div>
+  <div id="recOut" style="margin-top: 32px;"></div>
+</main>
 
-      <!-- Step 2: Outcome type -->
-      <div class="rec-step" id="recStep2" style="display:none;opacity:0;">
-        <h2 class="rec-question">What type of outcome are you looking for?</h2>
-        <div class="rec-options rec-options-2col">
-          <button class="rec-option" data-step="2" data-value="Automation">
-            <span class="rec-option-name">Reduce manual effort</span>
-            <span class="rec-option-sub">Automation</span>
-          </button>
-          <button class="rec-option" data-step="2" data-value="Analytics">
-            <span class="rec-option-name">Make better decisions</span>
-            <span class="rec-option-sub">Analytics &amp; insight</span>
-          </button>
-          <button class="rec-option" data-step="2" data-value="Knowledge">
-            <span class="rec-option-name">Surface knowledge faster</span>
-            <span class="rec-option-sub">Knowledge management</span>
-          </button>
-          <button class="rec-option" data-step="2" data-value="Agents">
-            <span class="rec-option-name">Automate end-to-end workflows</span>
-            <span class="rec-option-sub">Agentic AI</span>
-          </button>
-          <button class="rec-option rec-option-span" data-step="2" data-value="Generation">
-            <span class="rec-option-name">Create content or drafts</span>
-            <span class="rec-option-sub">Content generation</span>
-          </button>
-        </div>
-        <button class="rec-back" id="recBack2">&larr; Back</button>
-      </div>
-
-      <!-- Step 3: Time horizon -->
-      <div class="rec-step" id="recStep3" style="display:none;opacity:0;">
-        <h2 class="rec-question">What&rsquo;s your time horizon?</h2>
-        <div class="rec-options rec-options-1col">
-          <button class="rec-option" data-step="3" data-value="starter">
-            <span class="rec-option-name">Quick win (&lt;90 days)</span>
-            <span class="rec-option-sub">I need something fast with clear, demonstrable ROI</span>
-          </button>
-          <button class="rec-option" data-step="3" data-value="pilot">
-            <span class="rec-option-name">6–12 months</span>
-            <span class="rec-option-sub">Room for a proper pilot and iterative deployment</span>
-          </button>
-          <button class="rec-option" data-step="3" data-value="scaling">
-            <span class="rec-option-name">12 months+</span>
-            <span class="rec-option-sub">Strategic, enterprise-wide transformation</span>
-          </button>
-        </div>
-        <button class="rec-back" id="recBack3">&larr; Back</button>
-      </div>
-
-      <!-- Results -->
-      <div class="rec-step" id="recResults" style="display:none;opacity:0;">
-        <div class="rec-results-header">
-          <p class="section-label">Your recommendations</p>
-          <h2 class="rec-results-title" id="recResultsTitle"></h2>
-          <p class="rec-maturity-context" id="recMaturityCtx"></p>
-        </div>
-        <div class="mag-grid-3" id="recGrid"></div>
-        <div class="rec-results-ctas">
-          <a href="{{ '/use-cases' | relative_url }}" class="btn btn-primary">Explore all use cases →</a>
-          <button class="btn btn-ghost" id="recRestart">↻ Start over</button>
-        </div>
-        <div style="margin-top:1.5rem;">
-          <button class="rec-back" id="recBackResults">&larr; Change answers</button>
-        </div>
-      </div>
-
-    </div><!-- /.recommender-wrap -->
-  </div><!-- /.container -->
-</section>
+<script id="ucData" type="application/json">
+{{ site.data.use-cases | jsonify }}
+</script>
 
 <script>
 (function () {
-  var DATA = (typeof USE_CASES !== 'undefined') ? USE_CASES : [];
+  var data = JSON.parse(document.getElementById('ucData').textContent);
+  var state = { biz: null, proc: null, risk: null };
 
-  var answers  = { biz: null, process: null, horizon: null };
-  var activeEl = document.getElementById('recStep1');
-
-  var STEPS = {
-    1:       document.getElementById('recStep1'),
-    2:       document.getElementById('recStep2'),
-    3:       document.getElementById('recStep3'),
-    results: document.getElementById('recResults')
-  };
-
-  var HORIZON_CONTEXT = {
-    starter: 'These use cases are well-suited to fast deployment. Each can be approached as a focused, low-risk pilot with clear success metrics — a strong foundation for building internal capability.',
-    pilot:   'Building on early momentum, these use cases are strong candidates for structured pilots. Proven patterns with measurable returns and established delivery playbooks.',
-    scaling: 'These use cases can be deployed systematically at scale, with robust governance, deep workflow integration, and clear value measurement frameworks.'
-  };
-
-  var OUTCOME_LABELS = {
-    Automation: 'automation',
-    Analytics:  'analytics & insight',
-    Knowledge:  'knowledge management',
-    Agents:     'agentic workflows',
-    Generation: 'content generation'
-  };
-
-  var BIZ_LABELS = {
-    Finance:            'Finance',
-    HR:                 'HR',
-    'Supply Chain':     'Supply Chain',
-    'Customer Service': 'Customer Service',
-    IT:                 'IT',
-    Legal:              'Legal',
-    all:                'cross-functional'
-  };
-
-  function transitionTo(nextKey) {
-    var nextEl = (typeof nextKey === 'number') ? STEPS[nextKey] : STEPS.results;
-    var prevEl = activeEl;
-
-    prevEl.style.opacity       = '0';
-    prevEl.style.pointerEvents = 'none';
-
-    setTimeout(function () {
-      prevEl.style.display       = 'none';
-      prevEl.style.pointerEvents = '';
-      nextEl.style.display       = 'block';
-      nextEl.style.opacity       = '0';
-      activeEl = nextEl;
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () { nextEl.style.opacity = '1'; });
+  document.querySelectorAll('.choice-grid').forEach(function (grid) {
+    var q = grid.getAttribute('data-q');
+    grid.querySelectorAll('.choice').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        grid.querySelectorAll('.choice').forEach(function (b) { b.classList.remove('selected'); });
+        btn.classList.add('selected');
+        state[q] = btn.getAttribute('data-v');
+        render();
       });
-      updateProgress(typeof nextKey === 'number' ? nextKey : 'results');
-    }, 300);
-  }
-
-  function updateProgress(step) {
-    var progress = document.getElementById('recProgress');
-    var label    = document.getElementById('recStepLabel');
-    var dots  = ['recDot1', 'recDot2', 'recDot3'].map(function (id) { return document.getElementById(id); });
-    var conns = ['recConn1', 'recConn2'].map(function (id) { return document.getElementById(id); });
-
-    if (step === 'results') { progress.style.display = 'none'; return; }
-    progress.style.display = '';
-    label.textContent = 'Step ' + step + ' of 3';
-    dots.forEach(function (d, i) {
-      d.classList.remove('active', 'done');
-      if      (i + 1 < step)  d.classList.add('done');
-      else if (i + 1 === step) d.classList.add('active');
     });
-    conns.forEach(function (c, i) { c.classList.toggle('done', i + 1 < step); });
-  }
+  });
 
-  function getRecommendations(biz, proc) {
-    var scored = DATA.map(function (uc) {
-      var bizMatch  = (biz === 'all') || (uc.business === biz);
-      var procMatch = (uc.process === proc);
-      var score = 0;
-      if      (bizMatch && procMatch) score = 3;
-      else if (bizMatch)              score = 2;
-      else if (procMatch)             score = 1;
-      return { uc: uc, score: score };
-    });
-    scored.sort(function (a, b) { return b.score - a.score; });
-    return scored.filter(function (s) { return s.score > 0; }).slice(0, 6).map(function (s) { return s.uc; });
-  }
-
-  function esc(s) {
-    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function renderResults() {
-    var titleEl = document.getElementById('recResultsTitle');
-    var ctxEl   = document.getElementById('recMaturityCtx');
-    var gridEl  = document.getElementById('recGrid');
-    var results = getRecommendations(answers.biz, answers.process);
-    var bizLabel  = BIZ_LABELS[answers.biz]      || answers.biz;
-    var procLabel = OUTCOME_LABELS[answers.process] || (answers.process || '').toLowerCase();
-
-    titleEl.textContent = results.length + ' use case' + (results.length !== 1 ? 's' : '') + ' for ' +
-      (answers.biz === 'all' ? procLabel : bizLabel + ' · ' + procLabel);
-
-    ctxEl.textContent = HORIZON_CONTEXT[answers.horizon] || '';
-
-    gridEl.innerHTML = '';
-    if (results.length === 0) {
-      gridEl.innerHTML = '<div style="grid-column:1/-1;padding:3rem;text-align:center;border:1px dashed var(--rule);border-radius:var(--r-md);color:var(--ink-soft);">No exact matches — <a href="/use-cases" style="color:var(--accent);">browse the full library</a>.</div>';
+  function render() {
+    var out = document.getElementById('recOut');
+    if (!state.biz || !state.proc || !state.risk) {
+      out.innerHTML = '<p style="font-family: var(--grid); font-size: 12px; color: var(--ink-mute); letter-spacing: 0.1em; text-transform: uppercase;">// awaiting_input · ' + (3 - [state.biz, state.proc, state.risk].filter(Boolean).length) + ' question(s) remaining</p>';
       return;
     }
-    results.forEach(function (uc) {
-      var card = document.createElement('div');
-      card.className = 'uc-card';
-      card.innerHTML =
-        '<div style="display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px;">' +
-          '<span style="font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--accent);font-family:var(--font-mono);">' + esc(uc.business).toUpperCase() + '</span>' +
-          '<span class="impact-badge">' + esc(uc.impact_label || uc.impact) + '</span>' +
-        '</div>' +
-        '<h4 style="font-size:18px;font-weight:600;letter-spacing:-0.018em;line-height:1.25;margin:0 0 10px;color:var(--ink);">' + esc(uc.name) + '</h4>' +
-        '<p style="font-size:14px;line-height:1.5;color:var(--ink-soft);margin:0;">' + esc(uc.description || uc.desc || '') + '</p>' +
-        '<div style="margin-top:14px;">' +
-          '<span style="font-size:11px;padding:4px 10px;border:1px solid var(--rule);border-radius:999px;color:var(--ink-soft);">' + esc(uc.process) + '</span>' +
-        '</div>';
-      gridEl.appendChild(card);
+
+    var risks = state.risk === 'Low' ? ['Low'] : (state.risk === 'Medium' ? ['Low','Medium'] : ['Low','Medium','High']);
+    function score(uc) {
+      return (uc.biz === state.biz ? 3 : 0)
+           + (uc.proc === state.proc ? 3 : 0)
+           + (risks.indexOf(uc.risk) > -1 ? 1 : -2);
+    }
+    var ranked = data.map(function (uc) { return { uc: uc, s: score(uc) }; })
+      .sort(function (a, b) { return b.s - a.s; })
+      .filter(function (r) { return r.s > 0; })
+      .slice(0, 3);
+
+    if (!ranked.length) {
+      out.innerHTML = '<div class="wiz-step"><h3>// NO_MATCH</h3><p style="font-family: var(--grid); font-size: 13px; color: var(--ink-soft);">Nothing in the library fits all three constraints. Loosen one — usually risk appetite — and try again.</p></div>';
+      return;
+    }
+
+    var html = '<div class="sec-h" style="margin-top: 16px;"><h2>// TOP_3_RECOMMENDATIONS</h2><span class="more">scored against ' + data.length + ' use cases</span></div><div class="uc-grid">';
+    ranked.forEach(function (r) {
+      var uc = r.uc;
+      html += '<article class="uc-card">'
+        + '<span class="uc-id">' + uc.id + ' · score ' + r.s + '</span>'
+        + '<h3 class="uc-title">' + uc.title + '</h3>'
+        + '<p class="uc-desc">' + uc.desc + '</p>'
+        + '<div class="uc-tags"><span class="uc-tag biz">' + uc.biz + '</span><span class="uc-tag proc">' + uc.proc + '</span></div>'
+        + '<div class="uc-meta"><span>PAYBACK <b>' + uc.payback + '</b></span><span>RISK · ' + uc.risk.toUpperCase() + '</span></div>'
+        + '</article>';
     });
+    html += '</div>';
+    out.innerHTML = html;
   }
 
-  function resetAll() {
-    answers = { biz: null, process: null, horizon: null };
-    document.querySelectorAll('.rec-option').forEach(function (b) { b.classList.remove('selected'); });
-    document.getElementById('recProgress').style.display = '';
-    transitionTo(1);
-  }
-
-  document.querySelectorAll('.rec-option[data-step]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var step = parseInt(btn.getAttribute('data-step'), 10);
-      var val  = btn.getAttribute('data-value');
-      STEPS[step].querySelectorAll('.rec-option').forEach(function (b) { b.classList.remove('selected'); });
-      btn.classList.add('selected');
-
-      setTimeout(function () {
-        if (step === 1) { answers.biz = val; transitionTo(2); }
-        else if (step === 2) { answers.process = val; transitionTo(3); }
-        else if (step === 3) { answers.horizon = val; renderResults(); transitionTo('results'); }
-      }, 300);
-    });
-  });
-
-  document.getElementById('recBack2').addEventListener('click', function () { transitionTo(1); });
-  document.getElementById('recBack3').addEventListener('click', function () { transitionTo(2); });
-  document.getElementById('recBackResults').addEventListener('click', function () {
-    document.getElementById('recProgress').style.display = '';
-    transitionTo(3);
-  });
-  document.getElementById('recRestart').addEventListener('click', resetAll);
+  render();
 }());
 </script>

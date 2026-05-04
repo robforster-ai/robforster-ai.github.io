@@ -1,45 +1,28 @@
-<nav class="nav" id="siteNav">
-  <div class="nav-inner">
-    <a href="{{ '/' | relative_url }}" class="nav-logo">Rob <span>Forster</span></a>
-
-    <ul class="nav-links">
-      <li><a href="{{ '/writing' | relative_url }}">Writing</a></li>
-      <li><a href="{{ '/#use-cases' | relative_url }}">Use Cases</a></li>
-      <li><a href="{{ '/roi-calculator' | relative_url }}">ROI Calculator</a></li>
-      <li><a href="{{ '/recommender' | relative_url }}">Recommender</a></li>
-      <li><a href="{{ '/news' | relative_url }}">News</a></li>
-      <li><a href="{{ '/about' | relative_url }}">About</a></li>
-    </ul>
-
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
-          <line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/>
-          <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
-          <line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/>
-        </svg>
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
-      <a href="{{ '/about#contact' | relative_url }}" class="nav-cta">Connect</a>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a href="{{ '/' | relative_url }}" class="logo"><span class="blink"></span> RF // CYBERDECK_v3.0</a>
+    <nav>
+      <a href="{{ '/writing' | relative_url }}"{% if page.url contains '/writing' or page.url contains '/2025' or page.url contains '/2026' %} aria-current="page"{% endif %}>Feed</a>
+      <a href="{{ '/use-cases' | relative_url }}"{% if page.url contains '/use-cases' %} aria-current="page"{% endif %}>Use_Cases</a>
+      <a href="{{ '/roi-calculator' | relative_url }}"{% if page.url contains '/roi' %} aria-current="page"{% endif %}>ROI</a>
+      <a href="{{ '/recommender' | relative_url }}"{% if page.url contains '/recommender' %} aria-current="page"{% endif %}>Recommender</a>
+      <a href="{{ '/news' | relative_url }}"{% if page.url contains '/news' %} aria-current="page"{% endif %}>NetWatch</a>
+      <a href="{{ '/about' | relative_url }}"{% if page.url contains '/about' %} aria-current="page"{% endif %}>Bio</a>
+    </nav>
+    <span class="clock" id="clk">— / —</span>
+    <a href="{{ '/about#contact' | relative_url }}" class="jack-in">Jack_In</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
   </div>
-</nav>
+</header>
 
-<!-- Mobile full-screen overlay -->
-<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
-  <button class="nav-overlay-close" id="navOverlayClose" aria-label="Close menu">&times;</button>
+<div class="nav-overlay" id="navOverlay" role="dialog" aria-modal="true">
+  <button class="nav-overlay-close" id="navOverlayClose" aria-label="Close">&times;</button>
   <a href="{{ '/' | relative_url }}">Home</a>
-  <a href="{{ '/writing' | relative_url }}">Writing</a>
-  <a href="{{ '/news' | relative_url }}">News</a>
+  <a href="{{ '/writing' | relative_url }}">Feed</a>
   <a href="{{ '/use-cases' | relative_url }}">Use Cases</a>
-  <a href="{{ '/roi-calculator' | relative_url }}">ROI Calculator</a>
+  <a href="{{ '/roi-calculator' | relative_url }}">ROI</a>
   <a href="{{ '/recommender' | relative_url }}">Recommender</a>
-  <a href="{{ '/about' | relative_url }}">About</a>
-  <a href="{{ '/about#contact' | relative_url }}" class="text-gold">Connect</a>
+  <a href="{{ '/news' | relative_url }}">NetWatch</a>
+  <a href="{{ '/about' | relative_url }}">Bio</a>
+  <a href="{{ '/about#contact' | relative_url }}" class="text-cyan">Jack_In</a>
 </div>

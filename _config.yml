@@ -1,14 +1,36 @@
 title: "Rob Forster | Enterprise AI"
-description: "Practitioner writing on enterprise AI transformation, programme delivery and the gap between what technology promises and what it takes to make it real."
+description: "Practitioner notes on enterprise AI transformation and programme delivery."
 author: "Rob Forster"
 baseurl: ""
 url: "https://robforster-ai.github.io"
+
 permalink: /:year/:month/:day/:title/
+
+markdown: kramdown
+highlighter: rouge
 
 plugins:
   - jekyll-feed
   - jekyll-paginate
+  - jekyll-sitemap
   - jekyll-seo-tag
 
 paginate: 12
 paginate_path: "/writing/page:num/"
+
+defaults:
+  - scope: { path: "", type: "posts" }
+    values: { layout: "post" }
+  - scope: { path: "" }
+    values: { layout: "page" }
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - design_handoff_blog_redesign
+  - _handoff-index.html
+  - ANALYTICS_SETUP.md
+  - DECAP_CMS_SETUP.md
+  - "*.zip"
