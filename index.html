@@ -7,26 +7,29 @@ particles: true
 
 <div class="container">
   <!-- HERO -->
-  <section class="hero">
-    <span class="kicker">// ENTERPRISE_AI · TRANSFORMATION_LEAD · LDN_NODE</span>
-    <h1>Rob<br>Forster<span class="dot">.</span></h1>
-    <p class="lede">
+  <section class="v4-hero">
+    <span class="kicker v4-kicker">// ENTERPRISE_AI · TRANSFORMATION_LEAD · LDN_NODE</span>
+    <h1 class="v4-h1">
+      <span class="ln"><span>Rob</span></span>
+      <span class="ln"><span>Forster<span class="dot">.</span></span></span>
+    </h1>
+    <p class="lede v4-lede">
       Twenty years rooted in the wires of enterprise AI. Notes from the inside — what works, what scams, what scales. <b class="text-lime">No hype.</b> No vendor-deck. Just signal from the floor.
     </p>
-    <div class="ctas">
+    <div class="v4-ctas">
       {% assign latest = site.posts | first %}
       {% if latest %}
-      <a class="btn btn-primary" href="{{ latest.url | relative_url }}">► READ_LATEST.essay</a>
+      <a class="cta-link mag" href="{{ latest.url | relative_url }}">► READ_LATEST.essay</a>
       {% endif %}
-      <a class="btn" href="{{ '/use-cases' | relative_url }}">// USE_CASE.lib</a>
-      <a class="btn" href="{{ '/roi-calculator' | relative_url }}">$ run roi-calc</a>
+      <a class="cta-link mag" href="{{ '/use-cases' | relative_url }}">// USE_CASE.lib</a>
+      <a class="cta-link mag" href="{{ '/roi-calculator' | relative_url }}">$ run roi-calc</a>
     </div>
 
-    <div class="ribbon">
-      <div class="ribbon-cell"><div class="lbl">YRS_ON_DECK</div><div class="val">20+</div></div>
-      <div class="ribbon-cell"><div class="lbl">PROGRAMMES_RUN</div><div class="val">£M+</div></div>
-      <div class="ribbon-cell"><div class="lbl">SECTORS_HACKED</div><div class="val">05</div></div>
-      <div class="ribbon-cell"><div class="lbl">PILOT_FAIL_RATE</div><div class="val text-pink">95%</div></div>
+    <div class="stat-row">
+      <div class="stat"><div class="lbl">YRS_ON_DECK</div><div class="val" data-count="20" data-suffix="+">20+</div></div>
+      <div class="stat"><div class="lbl">PROGRAMMES_RUN</div><div class="val">£M+</div></div>
+      <div class="stat"><div class="lbl">SECTORS_HACKED</div><div class="val" data-count="5" data-pad="2">05</div></div>
+      <div class="stat"><div class="lbl">PILOT_FAIL_RATE</div><div class="val text-pink" data-count="95" data-suffix="%">95%</div></div>
     </div>
   </section>
 </div>
@@ -44,100 +47,80 @@ particles: true
 </div>
 
 <!-- FEATURED -->
-<section class="container sec">
+<section class="container blk">
   <div class="sec-h"><h2>// PRIORITY_FEED</h2><a class="more" href="{{ '/writing' | relative_url }}">view_archive.log</a></div>
   {% assign featured = site.posts | where: "featured", true | first %}
   {% if featured == nil %}{% assign featured = site.posts | first %}{% endif %}
   {% if featured %}
-  <div class="featured">
-    <div class="featured-art">
-      <span class="scan"></span>
-      <div class="glyph">{{ featured.title | split: " " | first | upcase | slice: 0, 4 }}</div>
-    </div>
-    <div>
-      <span class="kicker text-pink" style="border-color: var(--neon-pink); background: rgba(201,162,75,0.05); text-shadow: 0 0 12px rgba(201,162,75,0.45);">{{ featured.category | upcase }} · {{ featured.read_time | default: '8 MIN' | upcase }}</span>
-      <h3><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h3>
-      <p>{{ featured.excerpt | strip_html | truncate: 220 }}</p>
-      <p style="margin: 24px 0 0; color: var(--ink-mute); font-family: var(--grid); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">// AUTHOR: rob.forster · {{ featured.date | date: "%Y-%m-%d" }} · TAGS: {{ featured.tags | join: ", " }}</p>
-      <a class="btn btn-primary" href="{{ featured.url | relative_url }}" style="margin-top: 24px;">► OPEN_ESSAY</a>
-    </div>
-  </div>
+  <article class="feat-v4">
+    <span class="kicker text-pink feat-kicker">{{ featured.category | upcase }} · {{ featured.read_time | default: '8 MIN' | upcase }}</span>
+    <h3 class="feat-title"><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h3>
+    <p class="feat-excerpt">{{ featured.excerpt | strip_html | truncate: 220 }}</p>
+    <p class="feat-meta">// AUTHOR: rob.forster · {{ featured.date | date: "%Y-%m-%d" }} · TAGS: {{ featured.tags | join: ", " }}</p>
+    <a class="cta-link mag" href="{{ featured.url | relative_url }}">► OPEN_ESSAY</a>
+  </article>
   {% endif %}
 </section>
 
 <!-- LATEST -->
-<section class="container sec">
+<section class="container blk">
   <div class="sec-h"><h2>// LATEST_DROPS</h2><a class="more" href="{{ '/writing' | relative_url }}">all_essays.json</a></div>
-  <div class="grid-3">
+  <div class="idx-list">
     {% for post in site.posts limit: 6 %}
-    <a class="card" href="{{ post.url | relative_url }}">
-      <div class="card-art">
-        <span class="scan"></span>
-        <div class="glyph">{{ post.title | split: " " | first | upcase | slice: 0, 4 }}</div>
-        <span class="id">№{{ forloop.index | prepend: '00' | slice: -3, 3 }} / {{ post.date | date: "%d·%b·%y" | upcase }}</span>
-      </div>
-      <div class="card-body">
-        <p class="card-cat">{{ post.category | upcase }}</p>
-        <h3 class="card-title">{{ post.title }}</h3>
-        <p class="card-meta">{{ post.read_time | default: '6 MIN' }} · {{ post.tags | first }}</p>
-      </div>
+    <a class="idx-row" href="{{ post.url | relative_url }}">
+      <span class="idx-no">№{{ forloop.index | prepend: '00' | slice: -3, 3 }}</span>
+      <span class="idx-title">{{ post.title }}</span>
+      <span class="idx-meta">{{ post.category | upcase }} · {{ post.read_time | default: '6 MIN' | upcase }} · {{ post.date | date: "%d·%b·%y" | upcase }}</span>
     </a>
     {% endfor %}
   </div>
 </section>
 
 <!-- USE CASES -->
-<section class="container sec">
+<section class="container blk">
   <div class="sec-h"><h2>// USE_CASE_LIB</h2><a class="more" href="{{ '/use-cases' | relative_url }}">browse_all.lib</a></div>
-  <div class="uc-grid">
+  <div class="uc-list">
     {% for uc in site.data.use-cases limit: 6 %}
-    <article class="uc-card">
-      <span class="uc-id">{{ uc.id }}</span>
-      <h3 class="uc-title">{{ uc.title }}</h3>
-      <p class="uc-desc">{{ uc.desc }}</p>
-      <div class="uc-tags">
-        <span class="uc-tag biz">{{ uc.biz }}</span>
-        <span class="uc-tag proc">{{ uc.proc }}</span>
+    <article class="ucr">
+      <div class="ucr-top">
+        <span class="ucr-id">{{ uc.id }}</span>
+        <h3 class="ucr-title">{{ uc.title }}</h3>
+        <span class="ucr-meta">PAYBACK <b>{{ uc.payback }}</b> · RISK · {{ uc.risk | upcase }}</span>
       </div>
-      <div class="uc-meta"><span>PAYBACK <b>{{ uc.payback }}</b></span><span>RISK · {{ uc.risk | upcase }}</span></div>
+      <p class="ucr-desc">{{ uc.desc }}</p>
+      <div class="ucr-tags"><span class="uc-tag biz">{{ uc.biz }}</span><span class="uc-tag proc">{{ uc.proc }}</span></div>
     </article>
     {% endfor %}
   </div>
 </section>
 
 <!-- TOOLS -->
-<section class="container sec">
+<section class="container blk">
   <div class="sec-h"><h2>// TOOL_DECK</h2><span class="more" style="color: var(--ink-mute);">interactive</span></div>
-  <div class="grid-2">
-    <a class="card" href="{{ '/roi-calculator' | relative_url }}">
-      <div class="card-art" style="background: linear-gradient(135deg, rgba(77,219,232,0.25), rgba(77,219,232,0.18)), repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.04) 12px 13px);">
-        <span class="scan"></span>
-        <div class="glyph">ROI</div>
-        <span class="id">TOOL_01</span>
-      </div>
-      <div class="card-body">
-        <p class="card-cat">CALCULATOR</p>
-        <h3 class="card-title">AI ROI calculator.</h3>
-        <p class="card-meta">Plug in volumes, time, and cost. Honest numbers — no vendor maths.</p>
-      </div>
+  <div class="tool-list">
+    <a class="tool-link" href="{{ '/roi-calculator' | relative_url }}">
+      <span class="tool-glyph">ROI</span>
+      <span class="tool-body">
+        <span class="tool-cat">CALCULATOR · TOOL_01</span>
+        <span class="tool-title">AI ROI calculator.</span>
+        <span class="tool-meta">Plug in volumes, time, and cost. Honest numbers — no vendor maths.</span>
+      </span>
+      <span class="tool-arrow">→</span>
     </a>
-    <a class="card" href="{{ '/recommender' | relative_url }}">
-      <div class="card-art" style="background: linear-gradient(135deg, rgba(107,125,158,0.30), rgba(77,219,232,0.18)), repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.04) 12px 13px);">
-        <span class="scan"></span>
-        <div class="glyph">REC</div>
-        <span class="id">TOOL_02</span>
-      </div>
-      <div class="card-body">
-        <p class="card-cat">RECOMMENDER</p>
-        <h3 class="card-title">Use-case recommender.</h3>
-        <p class="card-meta">Three questions. Get three use cases worth the budget.</p>
-      </div>
+    <a class="tool-link" href="{{ '/recommender' | relative_url }}">
+      <span class="tool-glyph">REC</span>
+      <span class="tool-body">
+        <span class="tool-cat">RECOMMENDER · TOOL_02</span>
+        <span class="tool-title">Use-case recommender.</span>
+        <span class="tool-meta">Three questions. Get three use cases worth the budget.</span>
+      </span>
+      <span class="tool-arrow">→</span>
     </a>
   </div>
 </section>
 
 <!-- TERMINAL / BIO TEASER -->
-<section class="container sec">
+<section class="container blk">
   <div class="sec-h"><h2>// OPERATOR.bio</h2><a class="more" href="{{ '/about' | relative_url }}">full_dossier</a></div>
   <div class="term">
     <p><span class="prompt">rf@cyberdeck:~$</span> <span class="out">whoami</span></p>
