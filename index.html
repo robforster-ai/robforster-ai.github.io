@@ -2,6 +2,7 @@
 layout: default
 title: "Rob Forster — Enterprise AI Notes"
 description: "Practitioner notes on enterprise AI transformation, programme delivery, and the gap between strategy decks and Monday-morning reality."
+particles: true
 ---
 
 <div class="container">
@@ -54,7 +55,7 @@ description: "Practitioner notes on enterprise AI transformation, programme deli
       <div class="glyph">{{ featured.title | split: " " | first | upcase | slice: 0, 4 }}</div>
     </div>
     <div>
-      <span class="kicker text-pink" style="border-color: var(--neon-pink); background: rgba(255,0,110,0.05); text-shadow: 0 0 12px rgba(255,0,110,0.45);">{{ featured.category | upcase }} · {{ featured.read_time | default: '8 MIN' | upcase }}</span>
+      <span class="kicker text-pink" style="border-color: var(--neon-pink); background: rgba(201,162,75,0.05); text-shadow: 0 0 12px rgba(201,162,75,0.45);">{{ featured.category | upcase }} · {{ featured.read_time | default: '8 MIN' | upcase }}</span>
       <h3><a href="{{ featured.url | relative_url }}">{{ featured.title }}</a></h3>
       <p>{{ featured.excerpt | strip_html | truncate: 220 }}</p>
       <p style="margin: 24px 0 0; color: var(--ink-mute); font-family: var(--grid); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">// AUTHOR: rob.forster · {{ featured.date | date: "%Y-%m-%d" }} · TAGS: {{ featured.tags | join: ", " }}</p>
@@ -109,7 +110,7 @@ description: "Practitioner notes on enterprise AI transformation, programme deli
   <div class="sec-h"><h2>// TOOL_DECK</h2><span class="more" style="color: var(--ink-mute);">interactive</span></div>
   <div class="grid-2">
     <a class="card" href="{{ '/roi-calculator' | relative_url }}">
-      <div class="card-art" style="background: linear-gradient(135deg, rgba(198,255,0,0.25), rgba(0,245,255,0.18)), repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.04) 12px 13px);">
+      <div class="card-art" style="background: linear-gradient(135deg, rgba(77,219,232,0.25), rgba(77,219,232,0.18)), repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.04) 12px 13px);">
         <span class="scan"></span>
         <div class="glyph">ROI</div>
         <span class="id">TOOL_01</span>
@@ -121,7 +122,7 @@ description: "Practitioner notes on enterprise AI transformation, programme deli
       </div>
     </a>
     <a class="card" href="{{ '/recommender' | relative_url }}">
-      <div class="card-art" style="background: linear-gradient(135deg, rgba(157,77,255,0.30), rgba(0,245,255,0.18)), repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.04) 12px 13px);">
+      <div class="card-art" style="background: linear-gradient(135deg, rgba(107,125,158,0.30), rgba(77,219,232,0.18)), repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.04) 12px 13px);">
         <span class="scan"></span>
         <div class="glyph">REC</div>
         <span class="id">TOOL_02</span>

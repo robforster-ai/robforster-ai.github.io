@@ -94,3 +94,24 @@
     });
   }
 }());
+
+/* ── scroll-reveal micro-animations ─────────────────────── */
+(function () {
+  'use strict';
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  document.documentElement.classList.add('js-anim');
+
+  var targets = document.querySelectorAll('.sec, .featured, .post-card, .ribbon, .uc-card');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+  targets.forEach(function (el) { io.observe(el); });
+}());
