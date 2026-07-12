@@ -1,26 +1,26 @@
 # NetWatch — curated external links.
-- date: 2026-04-28
-  source: MIT Sloan
-  title: "95% of generative AI pilots fail to scale"
-  url: "https://example.com/mit-sloan-genai"
-  take: "The number is real, but the framing is wrong. Most weren't trying to scale — they were demos."
-- date: 2026-04-21
-  source: Andreessen Horowitz
-  title: "Enterprise AI 16: vertical agents take the lead"
-  url: "https://example.com/a16z-enterprise-16"
-  take: "Vertical agents win because they own the workflow, not the model. Distribution is the moat."
-- date: 2026-04-14
-  source: Anthropic
-  title: "Claude 4 system prompt and tool-use changes"
-  url: "https://example.com/anthropic-claude-4"
-  take: "Tool-use is now the primary unlock. Stop benchmarking on chat — benchmark on agentic workflows."
-- date: 2026-04-07
-  source: Financial Times
-  title: "Banks quietly shelve half of their generative-AI pilots"
-  url: "https://example.com/ft-banks-genai"
-  take: "Quiet shelving is a feature, not a bug. The ones still running are the ones with a real owner."
-- date: 2026-03-31
+- date: 2026-05-28
+  source: Covington (Inside Global Tech)
+  title: "EU AI Act update: timeline relief, targeted simplification, new prohibitions"
+  url: "https://www.insideglobaltech.com/2026/05/28/eu-ai-act-update-timeline-relief-targeted-simplification-and-new-prohibitions/"
+  take: "High-risk obligations slipped sixteen months to Dec 2027. Your governance shouldn't slip with them — the firms treating the new date as a start date will be the case studies."
+- date: 2026-05-26
   source: Gartner
-  title: "Gartner predicts 30% of GenAI projects abandoned by end-2026"
-  url: "https://example.com/gartner-genai-2026"
+  title: "Applying uniform governance across AI agents will lead to enterprise agent failure"
+  url: "https://www.gartner.com/en/newsroom/press-releases/2026-05-26-gartner-says-applying-uniform-governance-across-ai-agents-will-lead-to-enterprise-ai-agent-failure"
+  take: "Govern by blast radius, not by org tidiness. A read-only summariser and an agent that can move money cannot share a control model."
+- date: 2025-08-18
+  source: MIT NANDA (via Fortune)
+  title: "95% of generative AI pilots deliver no measurable P&L return"
+  url: "https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/"
+  take: "The number is real, but the framing is wrong. Most weren't trying to scale — they were demos."
+- date: 2025-06-25
+  source: Gartner
+  title: "Over 40% of agentic AI projects will be cancelled by end of 2027"
+  url: "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027"
+  take: "Escalating cost, unclear value, inadequate risk controls. The same three failure modes that killed the pilots — autonomy just raises the stakes."
+- date: 2025-03-14
+  source: S&P Global (via CIO Dive)
+  title: "AI project failure rates are on the rise: 42% of firms abandon most initiatives"
+  url: "https://www.ciodive.com/news/AI-project-fail-data-SPGlobal/742590/"
   take: "Abandonment isn't failure if the org learned. The waste is the ones that drag on for two years."

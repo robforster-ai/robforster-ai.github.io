@@ -44,3 +44,7 @@ If you're a year in and nothing's in production, the answer is almost never "mor
 - Measure for ninety days before you scale anything.
 
 It's slower than it sounds. It's also the only path I've seen actually work.
+
+---
+
+*Update, July 2026.* The numbers caught up with the argument. MIT's NANDA study now puts [around 95% of generative AI pilots at no measurable return on the P&L](https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/), and S&P Global has the share of firms [abandoning most initiatives before production climbing from 17% to 42%](https://www.ciodive.com/news/AI-project-fail-data-SPGlobal/742590/) in a single year. "The failure is organisational, not technical" has gone from contrarian take to consensus finding. The fix, annoyingly, hasn't changed.

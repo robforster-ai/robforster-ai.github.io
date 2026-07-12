@@ -24,3 +24,7 @@ If any of those three is missing, you don't have governance. You have a hope.
 Compliance teams sometimes think governance is a quarterly review meeting. It isn't. Governance is the ability, at any point, to answer: *what is this model doing right now, and is that what we agreed it should be doing?*
 
 If the answer requires a four-week analyst engagement, you don't have governance.
+
+---
+
+*Update, July 2026.* The tooling finally arrived. LLM observability is a real category now — the APM incumbents (Datadog, New Relic) bolted on token-and-latency tabs, the AI-native tracers (Langfuse, LangSmith, Arize Phoenix) go deep on spans and evals, and tools like MLflow and AgentOps have grown up around monitoring agents. Good. But buying a dashboard is not building the spine. A vendor can hand you the traces; only your team can decide what "wrong" looks like, curate the eval suite, and actually open the drift board on a Monday morning. The three layers still have to be yours.

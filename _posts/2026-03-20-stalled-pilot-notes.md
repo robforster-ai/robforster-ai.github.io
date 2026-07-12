@@ -16,3 +16,7 @@ A pilot I reviewed recently had been running for fourteen months with no path to
 **Three.** Adoption was somebody else's job. The team built the model. Change management was supposed to come from the BU. The BU was waiting for "completion" before staffing up. Completion never arrived.
 
 The lesson isn't that any one of these is hard to fix. It's that all three need to be fixed before the pilot starts, not after it stalls.
+
+---
+
+*Update, July 2026.* When I wrote this it read as a cautionary tale. It's now closer to the median. S&P Global has [42% of organisations abandoning most AI initiatives before production](https://www.ciodive.com/news/AI-project-fail-data-SPGlobal/742590/), up from 17% the year before, with the average firm scrapping almost half its proofs of concept. The three failures above are, in my experience, still the three most common reasons a pilot stalls — and all three are decided before the pilot starts, not after.

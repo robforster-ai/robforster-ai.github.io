@@ -40,3 +40,7 @@ The point is not the table. The point is that the table exists, on the wiki, bef
 The most common governance failure I see isn't malice or negligence. It's that the model owner has been given accountability without authority. They can see a problem, but they can't pause production without convening a steering group that meets next Thursday.
 
 Fix that one thing — operator + model owner can pause without asking — and you've removed the single biggest cause of "AI in the news for the wrong reasons."
+
+---
+
+*Update, July 2026.* Two things moved since I wrote this. First, the EU pushed the high-risk (Annex III) obligations of the AI Act back under its "Digital Omnibus" package, [from 2 August 2026 to 2 December 2027](https://www.insideglobaltech.com/2026/05/28/eu-ai-act-update-timeline-relief-targeted-simplification-and-new-prohibitions/). That's real breathing room, and a bad excuse to let your own governance slip with the deadline. Second, Gartner now warns that [applying one uniform governance model across all your AI agents will itself cause failure](https://www.gartner.com/en/newsroom/press-releases/2026-05-26-gartner-says-applying-uniform-governance-across-ai-agents-will-lead-to-enterprise-ai-agent-failure). The four roles above still hold, but agents need a per-agent version of the table, scaled to blast radius. I wrote up what that looks like in [the year of the agent]({% post_url 2026-07-08-year-of-the-agent %}).
