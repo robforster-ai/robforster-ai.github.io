@@ -115,3 +115,145 @@
 
   targets.forEach(function (el) { io.observe(el); });
 }());
+
+/* ============================================================
+   RF // NEUROMANCER LAYER — ICE decode, phosphor boot, bleed
+   ============================================================ */
+
+/* ── shared ICE decode engine ───────────────────────────── */
+(function () {
+  'use strict';
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var GLYPHS = 'アイウエオカキクケコサシスセソタチツテト0123456789ABCDEF<>/[]{}*#'.split('');
+  var seed = 7;
+  function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+  function pick() { return GLYPHS[(rnd() * GLYPHS.length) | 0]; }
+  function escapeHtml(s) {
+    return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  /* Time-based so a resolve always lands in ~0.6–1.4s at any frame rate.
+     mode 'text'  — mutates a text node's value only (safe around child spans)
+     mode 'spans' — rebuilds innerHTML so unresolved glyphs glow ICE green */
+  function decode(target, opts) {
+    opts = opts || {};
+    var node = opts.mode === 'text' ? target : null;
+    var final = node ? node.nodeValue : (opts.final || target.textContent);
+    var chars = final.split('');
+    if (reduced || !chars.length) {
+      if (node) { node.nodeValue = final; }
+      if (opts.done) opts.done();
+      return;
+    }
+    var duration = Math.min(Math.max(chars.length * 0.05, 0.6), 1.4);
+    var rate = chars.length / duration;
+    var start = performance.now() + (opts.delay || 0);
+    function step(now) {
+      if (now < start) { requestAnimationFrame(step); return; }
+      var locked = Math.floor(((now - start) / 1000) * rate);
+      if (node) {
+        var out = '';
+        for (var i = 0; i < chars.length; i++) {
+          out += (chars[i] === ' ' || i < locked) ? chars[i] : pick();
+        }
+        node.nodeValue = out;
+      } else {
+        var html = '';
+        for (var k = 0; k < chars.length; k++) {
+          if (chars[k] === ' ') { html += ' '; }
+          else if (k < locked) { html += escapeHtml(chars[k]); }
+          else { html += '<span class="dcx">' + escapeHtml(pick()) + '</span>'; }
+        }
+        target.innerHTML = html;
+      }
+      if (locked < chars.length) { requestAnimationFrame(step); }
+      else {
+        if (node) { node.nodeValue = final; } else { target.textContent = final; }
+        if (opts.done) opts.done();
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  window.RF = window.RF || {};
+  window.RF.decode = decode;
+  window.RF.reduced = reduced;
+
+  /* ── section headings decrypt on first sight (all pages) ── */
+  if (reduced || !('IntersectionObserver' in window)) return;
+  var heads = document.querySelectorAll('.sec-h h2');
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      io.unobserve(entry.target);
+      decode(entry.target, {});
+    });
+  }, { threshold: 0.4 });
+  heads.forEach(function (h) {
+    /* only plain-text headings are safe to scramble */
+    if (h.children.length === 0) io.observe(h);
+  });
+}());
+
+/* ── phosphor terminal boot ─────────────────────────────── */
+(function () {
+  'use strict';
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+
+  document.querySelectorAll('.term').forEach(function (term) {
+    var lines = Array.prototype.slice.call(term.querySelectorAll('p'));
+    if (!lines.length) return;
+    lines.forEach(function (p) { p.classList.add('boot-hide'); });
+
+    var booted = false;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting || booted) return;
+        booted = true;
+        io.disconnect();
+        boot();
+      });
+    }, { threshold: 0.3 });
+    io.observe(term);
+
+    function boot() {
+      var li = 0;
+      function next() {
+        if (li >= lines.length) return;
+        var p = lines[li++];
+        var cmd = p.querySelector('.out');
+        p.classList.remove('boot-hide');
+        if (!cmd || typeof cmd.animate !== 'function') { setTimeout(next, 110); return; }
+        /* command lines type themselves — a steps() clip reveal, so
+           the DOM text never changes and AT/find-in-page see it whole */
+        var n = Math.max(cmd.textContent.length, 1);
+        var anim = cmd.animate(
+          [{ clipPath: 'inset(-10% 100% -10% -2%)' }, { clipPath: 'inset(-10% -2% -10% -2%)' }],
+          { duration: n * 42, easing: 'steps(' + n + ', end)', fill: 'forwards' }
+        );
+        anim.onfinish = function () { setTimeout(next, 240); };
+      }
+      next();
+    }
+  });
+}());
+
+/* ── signal bleed: wrap CTA/button labels for slice glitch ── */
+(function () {
+  'use strict';
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (matchMedia('(hover: none)').matches) return;
+
+  document.querySelectorAll('.cta-link, .btn').forEach(function (el) {
+    /* only plain-text labels are safe to wrap */
+    if (el.children.length !== 0 || !el.textContent.trim()) return;
+    var t = el.textContent;
+    var gl = document.createElement('span');
+    gl.className = 'gl';
+    gl.setAttribute('data-t', t);
+    gl.textContent = t;
+    el.textContent = '';
+    el.appendChild(gl);
+  });
+}());

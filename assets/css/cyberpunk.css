@@ -21,6 +21,8 @@
   --neon-amber: #c9a24b;
   --neon-violet:#6b7d9e;
 
+  --ice:        #39ff9d; /* ICE green — motion layer only, never chrome */
+
   --grid: 'JetBrains Mono', ui-monospace, monospace;
   --display: 'Space Grotesk', -apple-system, sans-serif;
   --serif: 'Cormorant Garamond', Georgia, serif;
@@ -910,4 +912,100 @@ body::after {
   .idx-row:hover .idx-title, .tool-link:hover .tool-arrow { transform: none; }
   .ucr-desc { max-height: none; opacity: 1; transition: none; }
   .scroll-progress { display: none; }
+}
+
+/* ============================================================
+   RF // NEUROMANCER LAYER — dead channel, ICE, signal bleed
+   The one new note is --ice; it lives strictly in motion
+   (decode glyphs, the matrix grid, the terminal). Chrome stays
+   cyan + gold on void navy.
+   ============================================================ */
+
+/* ── Dead-channel CRT overlay (site-wide, pure CSS) ── */
+.crt-layer {
+  position: fixed; inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+}
+.crt-layer::before { /* scanlines */
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    to bottom, rgba(0,0,0,0) 0 2px, rgba(0,0,0,0.28) 2px 3px);
+}
+.crt-layer::after { /* rolling refresh band + vignette */
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(rgba(77,219,232,0.05), rgba(57,255,157,0.03) 40%, transparent 42%) no-repeat 0 -220px / 100% 220px,
+    radial-gradient(120% 90% at 50% 50%, transparent 58%, rgba(0,0,0,0.5) 100%) no-repeat 0 0;
+  animation: crt-roll 8s linear infinite;
+}
+@keyframes crt-roll {
+  0%   { background-position: 0 -220px, 0 0; }
+  100% { background-position: 0 100vh, 0 0; }
+}
+.crt-layer { animation: crt-flick 7s steps(30) infinite; }
+@keyframes crt-flick {
+  0%, 96.5%, 100% { opacity: 1; }
+  97%   { opacity: 0.84; }
+  98%   { opacity: 0.96; }
+}
+
+/* ── ICE decode: unresolved glyphs glow green ── */
+.dcx { color: var(--ice); text-shadow: 0 0 8px rgba(57,255,157,0.35); }
+
+/* ── Signal bleed: chromatic slice glitch on CTAs/buttons ──
+   cyberdeck.js wraps the label in span.gl[data-t]; the pseudo
+   layers carry the bleeding channels. */
+.gl { position: relative; display: inline-block; }
+/* content only exists while hovered/focused so the duplicate
+   text never sits in the accessible name computation at rest */
+.gl::before, .gl::after {
+  content: '';
+  position: absolute; inset: 0;
+  opacity: 0; pointer-events: none;
+}
+.cta-link:hover .gl::before, .btn:hover .gl::before, .cta-link:focus-visible .gl::before {
+  content: attr(data-t);
+  color: var(--neon-cyan);
+  animation: gl-a 0.5s steps(2) infinite; opacity: 0.9;
+}
+.cta-link:hover .gl::after, .btn:hover .gl::after, .cta-link:focus-visible .gl::after {
+  content: attr(data-t);
+  color: var(--ice);
+  animation: gl-b 0.5s steps(2) infinite; opacity: 0.9;
+}
+@keyframes gl-a {
+  0%   { transform: translate(0, 0);      clip-path: inset(0 0 62% 0); }
+  50%  { transform: translate(-2px, -1px); clip-path: inset(30% 0 20% 0); }
+  100% { transform: translate(2px, 1px);   clip-path: inset(70% 0 0 0); }
+}
+@keyframes gl-b {
+  0%   { transform: translate(0, 0);      clip-path: inset(60% 0 0 0); }
+  50%  { transform: translate(2px, 1px);   clip-path: inset(10% 0 55% 0); }
+  100% { transform: translate(-2px, -1px); clip-path: inset(0 0 75% 0); }
+}
+/* mild aberration on editorial hovers — no DOM surgery needed */
+.idx-row:hover .idx-title, .tool-link:hover .tool-title {
+  text-shadow: -1px 0 rgba(77,219,232,0.55), 1px 0 rgba(201,162,75,0.45);
+}
+
+/* ── Phosphor terminal: green glow body, cyan prompt ── */
+.term { color: rgba(57,255,157,0.78); text-shadow: 0 0 7px rgba(57,255,157,0.22); }
+.term .prompt { color: var(--neon-cyan); text-shadow: 0 0 7px rgba(77,219,232,0.35); }
+.term .out { color: var(--ink); text-shadow: none; display: inline-block; }
+.term .caret { background: var(--ice); box-shadow: 0 0 8px var(--ice); }
+/* opacity, not visibility: boot-hidden lines stay in the
+   accessibility tree and findable in-page */
+.term p.boot-hide { opacity: 0; }
+
+/* ── Reduced motion: static scanlines only, no decode reliance ── */
+@media (prefers-reduced-motion: reduce) {
+  .crt-layer, .crt-layer::after { animation: none; }
+  .cta-link:hover .gl::before, .cta-link:hover .gl::after,
+  .btn:hover .gl::before, .btn:hover .gl::after,
+  .cta-link:focus-visible .gl::before, .cta-link:focus-visible .gl::after { animation: none; opacity: 0; }
+  .idx-row:hover .idx-title, .tool-link:hover .tool-title { text-shadow: none; }
 }

@@ -25,11 +25,34 @@
     });
   }
 
-  /* ── hero choreography ── */
+  /* ── hero choreography: the ICE decode ──
+     Lines snap into place already scrambled, then resolve —
+     jacking in, not sliding up. Decode engine lives in
+     cyberdeck.js (window.RF); falls back to the old slide
+     if it's missing. */
   var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-  tl.from('.v4-kicker', { clipPath: 'inset(0 100% 0 0)', duration: 0.9 }, 0.15)
-    .to('.v4-h1 .ln > span', { y: 0, duration: 1.1, stagger: 0.14, ease: 'power4.out' }, 0.3)
-    .from('.v4-lede', { y: 24, autoAlpha: 0, duration: 0.8 }, 0.85)
+  var canDecode = window.RF && typeof RF.decode === 'function' && !RF.reduced;
+
+  if (canDecode) {
+    tl.call(function () {
+      RF.decode(document.querySelector('.v4-kicker'), {});
+    }, null, 0.15)
+      .to('.v4-h1 .ln > span', { y: 0, duration: 0.01 }, 0.25)
+      .call(function () {
+        /* scramble only the text nodes — the .dot span stays put */
+        document.querySelectorAll('.v4-h1 .ln > span').forEach(function (span, i) {
+          var node = span.firstChild;
+          if (node && node.nodeType === 3) {
+            RF.decode(node, { mode: 'text', delay: i * 220 });
+          }
+        });
+      }, null, 0.25);
+  } else {
+    tl.from('.v4-kicker', { clipPath: 'inset(0 100% 0 0)', duration: 0.9 }, 0.15)
+      .to('.v4-h1 .ln > span', { y: 0, duration: 1.1, stagger: 0.14, ease: 'power4.out' }, 0.3);
+  }
+
+  tl.from('.v4-lede', { y: 24, autoAlpha: 0, duration: 0.8 }, 0.85)
     .from('.cta-link', { y: 16, autoAlpha: 0, duration: 0.6, stagger: 0.08 }, 1.0)
     .from('.stat-row', { y: 20, autoAlpha: 0, duration: 0.8 }, 1.15);
 
