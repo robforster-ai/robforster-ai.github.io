@@ -1,0 +1,301 @@
+/* ============================================================
+   RF // MYSPACE MODE — 2005 profile skin
+   Every rule is scoped under html.myspace so the cyberdeck
+   theme is untouched when the mode is off. Toggled from the
+   footer button; persisted in localStorage ('rf-theme').
+   ============================================================ */
+
+/* ── the toggle button lives in both themes ── */
+.ms-toggle {
+  font-family: var(--grid, monospace); font-size: 11px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: transparent; color: var(--ink-soft, #b4b4c4);
+  border: 1px solid var(--rule, rgba(255,255,255,0.08));
+  padding: 4px 10px; cursor: pointer;
+}
+.ms-toggle:hover { color: var(--neon-cyan, #4ddbe8); border-color: var(--neon-cyan, #4ddbe8); }
+.ms-toggle:focus-visible { outline: 2px solid var(--neon-cyan, #4ddbe8); outline-offset: 2px; }
+
+/* ============================================================
+   EVERYTHING BELOW ONLY APPLIES IN MYSPACE MODE
+   ============================================================ */
+
+/* ── palette remap: every var() in the cyberdeck sheet and in
+   inline styles resolves to light-surface-safe 2005 colours.
+   This is what keeps text readable inside the white boxes
+   without chasing each usage individually. ── */
+html.myspace {
+  --bg:        #e8edf7;
+  --bg-elev:   #ffffff;
+  --bg-warm:   #ffffff;
+  --ink:       #222222;
+  --ink-soft:  #444444;
+  --ink-mute:  #777777;
+  --rule:      #c9d2e4;
+  --rule-hot:  #c9d2e4;
+  --neon-pink:  #cc0066;
+  --neon-cyan:  #003399;
+  --neon-lime:  #cc0066;
+  --neon-amber: #cc6600;
+  --neon-violet:#6699cc;
+  --ice:        #cc0066;
+}
+
+/* ── ground: tiled glitter background, 2005 body copy ── */
+html.myspace body {
+  background-color: #0a1a3f;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(153,255,0,0.10) 0 2px, transparent 3px),
+    repeating-linear-gradient(45deg, rgba(255,0,153,0.10) 0 10px, rgba(0,51,153,0.10) 10px 20px),
+    linear-gradient(135deg, #1b0f3a, #06183f 40%, #2a0a3a);
+  background-size: 26px 26px, 40px 40px, 100% 100%;
+  background-attachment: fixed;
+  font-family: Verdana, Tahoma, Geneva, sans-serif;
+  color: #000;
+}
+html.myspace body::before, html.myspace body::after { display: none; }
+
+/* kill the cyberdeck ambience — this is a different decade */
+html.myspace #rf-particles,
+html.myspace .crt-layer,
+html.myspace .scroll-progress { display: none !important; }
+
+/* ── topbar → MySpace header bar ── */
+html.myspace .topbar {
+  background: #003399; border-bottom: 2px solid #6699cc;
+  backdrop-filter: none;
+}
+html.myspace .logo { color: #fff; text-shadow: none; font-family: Verdana; font-size: 13px; }
+html.myspace .logo .blink { background: #ff0099; box-shadow: none; }
+html.myspace .topbar nav { color: #fff; text-transform: none; font-family: Verdana; font-size: 11px; letter-spacing: 0; }
+html.myspace .topbar nav a:hover,
+html.myspace .topbar nav a[aria-current="page"] { color: #ffcc00; border-color: #ffcc00; text-shadow: none; }
+html.myspace .clock { color: #b8ccee; }
+html.myspace .jack-in {
+  background: #ffcc00; color: #003399; clip-path: none;
+  border: 2px outset #fff; box-shadow: none; font-family: Verdana;
+}
+html.myspace .nav-hamburger span { background: #fff; }
+html.myspace .nav-overlay { background: rgba(0,51,153,0.97); font-family: Verdana; text-transform: none; }
+
+/* ── HUD strip → guestbook banner ── */
+html.myspace .hud {
+  background: #ffcc00; border: 1px solid #000; border-bottom: 2px solid #000;
+  color: #000; font-family: Verdana; text-transform: none; letter-spacing: 0;
+  padding: 6px 10px; font-weight: bold;
+}
+html.myspace .hud span b { color: #cc0066; }
+
+/* ── generic content surfaces → white boxes ── */
+html.myspace .container { max-width: 820px; }
+html.myspace .blk, html.myspace .sec { padding: 18px 0 6px; }
+html.myspace .v4-hero, html.myspace .hero { min-height: 0; padding: 18px 0 8px; }
+
+html.myspace .sec-h {
+  background: #425c8b; border: 1px solid #000; border-bottom: none;
+  padding: 4px 8px; margin-bottom: 0;
+}
+html.myspace .sec-h h2 {
+  color: #fff; font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 12px; letter-spacing: 0; text-transform: none;
+}
+html.myspace .sec-h .more { color: #ffcc00; font-size: 10px; text-transform: none; letter-spacing: 0; }
+html.myspace .sec-h + * , html.myspace .sec-h ~ .idx-list, html.myspace .sec-h ~ .uc-list,
+html.myspace .sec-h ~ .tool-list, html.myspace .sec-h ~ .term, html.myspace .sec-h ~ .feat-v4,
+html.myspace .post-list, html.myspace #ucNoResults {
+  background: #fff; border: 1px solid #000; padding: 10px 12px; margin-bottom: 14px;
+}
+
+/* text inside white boxes goes 2005 */
+html.myspace .feat-title a, html.myspace .idx-title, html.myspace .tool-title,
+html.myspace .ucr-title, html.myspace .card-title, html.myspace .post-card .pc-title {
+  font-family: "Trebuchet MS", Verdana, sans-serif; color: #003399;
+  text-shadow: none; font-size: 16px; letter-spacing: 0;
+}
+html.myspace .feat-title a { font-size: 22px; color: #ff0099; font-weight: bold; }
+html.myspace .feat-title a:hover, html.myspace .idx-row:hover .idx-title,
+html.myspace .tool-link:hover .tool-title { color: #cc0066; text-shadow: none; transform: none; }
+html.myspace .feat-excerpt, html.myspace .ucr-desc, html.myspace .tool-meta,
+html.myspace .post-card .pc-summary { color: #333; font-size: 11px; font-family: Verdana; }
+html.myspace .feat-kicker, html.myspace .kicker {
+  background: #ffffcc; border: 1px dashed #999; color: #cc0066;
+  text-shadow: none; font-family: Verdana; font-size: 10px;
+}
+html.myspace .feat-meta, html.myspace .idx-no, html.myspace .idx-meta,
+html.myspace .ucr-id, html.myspace .ucr-meta, html.myspace .tool-cat,
+html.myspace .card-meta, html.myspace .post-card .pc-date { color: #888; font-family: Verdana; font-size: 9.5px; }
+html.myspace .idx-row, html.myspace .ucr, html.myspace .tool-link,
+html.myspace .post-card { border-bottom: 1px dashed #b9c4dc; }
+html.myspace .idx-row::before { display: none; }
+html.myspace .tool-glyph { -webkit-text-stroke: 0; color: #6699cc; font-family: "Comic Sans MS", cursive; font-size: 30px; }
+html.myspace .tool-arrow { color: #ff0099; }
+
+/* ── hero → profile name header ── */
+html.myspace .v4-hero .v4-h1, html.myspace .hero h1 {
+  font-family: "Comic Sans MS", "Trebuchet MS", cursive;
+  font-size: clamp(30px, 6vw, 44px); line-height: 1.1;
+  color: #ff0099; text-shadow: 2px 2px 0 #fff;
+  background: #fff; border: 1px solid #000; padding: 10px 14px;
+  animation: none; margin: 8px 0;
+}
+html.myspace .v4-h1 .ln { display: inline; overflow: visible; }
+html.myspace .v4-h1 .ln > span { display: inline; transform: none !important; }
+html.myspace .v4-h1 .dot { color: #99ff00; }
+html.myspace .v4-lede, html.myspace .hero .lede {
+  background: #fff; border: 1px solid #000; border-top: none;
+  color: #333; font-family: Verdana; font-size: 11px; font-style: italic;
+  padding: 8px 14px; margin: 0 0 10px; max-width: none; line-height: 1.5;
+  opacity: 1 !important; visibility: visible !important; transform: none !important;
+}
+html.myspace .text-lime { color: #cc0066; }
+html.myspace .v4-ctas { gap: 8px; opacity: 1 !important; }
+html.myspace .cta-link, html.myspace .btn {
+  background: #eef2fb; border: 2px outset #fff; color: #003399;
+  font-family: Verdana; font-size: 10px; font-weight: bold; text-transform: none;
+  letter-spacing: 0; padding: 4px 10px; clip-path: none; box-shadow: none;
+  opacity: 1 !important; visibility: visible !important; transform: none !important;
+}
+html.myspace .cta-link::after { display: none; }
+html.myspace .cta-link:hover, html.myspace .btn:hover { color: #cc0066; }
+html.myspace .gl::before, html.myspace .gl::after { display: none; }
+
+/* stat row → "profile stats" strip */
+html.myspace .stat-row, html.myspace .ribbon {
+  background: #ffffcc; border: 1px solid #000; padding: 8px 12px;
+  margin-top: 12px; gap: 10px;
+  opacity: 1 !important; visibility: visible !important; transform: none !important;
+}
+html.myspace .stat .lbl, html.myspace .ribbon-cell .lbl { color: #666; font-family: Verdana; font-size: 8.5px; text-transform: none; }
+html.myspace .stat .val, html.myspace .ribbon-cell .val { color: #cc0066; font-family: "Comic Sans MS", cursive; font-size: 20px; text-shadow: none; }
+
+/* marquee → blingee banner */
+html.myspace .marquee {
+  background: #000; border: 2px solid #99ff00; opacity: 1;
+  color: #99ff00; font-family: "Comic Sans MS", cursive; text-transform: none;
+}
+html.myspace .marquee-track { color: #99ff00; }
+html.myspace .marquee-track b { color: #ff0099; }
+
+/* terminal → AIM away message */
+html.myspace .term {
+  background: #ffffcc; border: 1px solid #000; border-left: 4px solid #ff0099;
+  color: #333; font-family: "Comic Sans MS", cursive; font-size: 11.5px;
+  padding: 10px 14px; text-shadow: none; box-shadow: none;
+}
+html.myspace .term .prompt { color: #cc0066; text-shadow: none; }
+html.myspace .term .out { color: #003399; }
+html.myspace .term .caret { background: #ff0099; box-shadow: none; }
+
+/* cards / grids on inner pages */
+html.myspace .card, html.myspace .uc-card, html.myspace .wiz-step, html.myspace .calc-result {
+  background: #fff; border: 1px solid #000; clip-path: none; box-shadow: none; color: #333;
+}
+html.myspace .card-art { background: linear-gradient(135deg, #dce6ff, #f7d9ec); border-bottom: 1px solid #000; }
+html.myspace .card-art .scan { display: none; }
+html.myspace .card-cat, html.myspace .uc-id { color: #cc0066; text-shadow: none; }
+html.myspace .uc-desc, html.myspace .card-body { color: #333; }
+html.myspace .pill { background: #eef2fb; border: 2px outset #fff; color: #003399; font-family: Verdana; text-transform: none; }
+html.myspace .pill.active { background: #ffcc00; color: #000; box-shadow: none; border-style: inset; }
+
+/* post body reading view */
+html.myspace .post-header, html.myspace .post-body, html.myspace .post-back {
+  background: #fff; border: 1px solid #000; padding: 14px 18px; color: #222;
+}
+html.myspace .post-header h1 { font-family: "Trebuchet MS", Verdana, sans-serif; color: #ff0099; font-size: clamp(24px, 4vw, 34px); }
+html.myspace .post-body { font-family: Verdana; font-size: 12px; line-height: 1.65; }
+html.myspace .post-body h2, html.myspace .post-body h3 { color: #003399; font-family: "Trebuchet MS", Verdana; }
+html.myspace .post-body a { color: #003399; border-bottom: 1px solid #6699cc; }
+html.myspace .post-body blockquote { border-left: 3px solid #ff0099; color: #333; background: #ffffcc; padding: 8px 12px; }
+html.myspace .post-body code { background: #eef2fb; border: 1px solid #cdd7ea; color: #cc0066; }
+html.myspace .tag { background: #ff0099; box-shadow: none; }
+
+/* forms */
+html.myspace .field input, html.myspace .field select, html.myspace .field textarea {
+  background: #fff; border: 2px inset #ccc; color: #000; font-family: Verdana;
+}
+html.myspace .calc-big { color: #cc0066; font-family: "Comic Sans MS", cursive; text-shadow: none; }
+html.myspace .choice { background: #fff; border: 2px outset #eee; color: #333; font-family: Verdana; }
+html.myspace .choice.selected { background: #ffffcc; border-style: inset; color: #cc0066; box-shadow: none; }
+
+/* ── footer → white box + pink toggle ── */
+html.myspace .footer { background: #fff; border: 1px solid #000; color: #333; font-family: Verdana; margin-top: 20px; padding: 20px 0 12px; }
+html.myspace .footer-brand-name { color: #ff0099; text-shadow: none; font-family: "Comic Sans MS", cursive; }
+html.myspace .footer-brand-name span { color: #888; }
+html.myspace .footer-col-title { color: #003399; }
+html.myspace .footer-col a { color: #003399; text-transform: none; }
+html.myspace .footer-col a:hover { color: #cc0066; text-decoration: underline; }
+html.myspace .footer-bottom { color: #888; text-transform: none; }
+html.myspace .footer-bottom .text-lime { color: #cc0066; }
+html.myspace .ms-toggle {
+  background: #cc0066; color: #fff; border: 2px outset #fff;
+  font-family: "Comic Sans MS", cursive; font-size: 11px; text-transform: none; letter-spacing: 0;
+}
+html.myspace .ms-toggle:hover { background: #a10050; color: #fff; border-color: #fff; }
+html.myspace .ms-toggle:focus-visible { outline: 2px solid #003399; outline-offset: 2px; }
+
+/* kill cyberdeck reveal states so nothing is stuck hidden */
+html.myspace .js-anim .sec, html.myspace .js-anim .featured, html.myspace .js-anim .post-card,
+html.myspace .js-anim .ribbon, html.myspace .js-anim .uc-card {
+  opacity: 1; transform: none; transition: none;
+}
+
+/* ── homepage extras (injected by myspace.js) ── */
+.ms-extras { display: none; }
+html.myspace .ms-extras { display: block; font-family: Verdana; font-size: 11px; color: #000; }
+.ms-extras * { box-sizing: border-box; }
+.ms-extras .msx-network {
+  background: #ffcc00; border: 1px solid #000; text-align: center;
+  font-weight: bold; padding: 5px; margin: 14px 0 8px;
+}
+.ms-extras .msx-box { background: #fff; border: 1px solid #000; margin-bottom: 10px; }
+.ms-extras .msx-box > h3 {
+  margin: 0; background: #425c8b; color: #fff; font-size: 11px; font-weight: bold;
+  padding: 3px 8px; font-family: "Trebuchet MS", Verdana, sans-serif;
+}
+.ms-extras .msx-in { padding: 10px; }
+.ms-extras .msx-player { display: flex; align-items: center; gap: 10px; background: #111; color: #0f0; padding: 10px; }
+.ms-extras .msx-player button {
+  width: 30px; height: 30px; border-radius: 50%; border: 2px solid #0f0;
+  background: #000; color: #0f0; font-size: 12px; cursor: pointer; flex: 0 0 auto;
+}
+.ms-extras .msx-player .np { font-family: "Courier New", monospace; font-size: 11px; }
+.ms-extras .msx-player .bars { display: flex; gap: 2px; align-items: flex-end; height: 20px; margin-left: auto; }
+.ms-extras .msx-player .bars i { width: 3px; height: 3px; background: #0f0; }
+.ms-extras .msx-player.on .bars i { animation: msx-eq 0.8s ease-in-out infinite; }
+.ms-extras .msx-player.on .bars i:nth-child(2) { animation-delay: 0.1s; }
+.ms-extras .msx-player.on .bars i:nth-child(3) { animation-delay: 0.25s; }
+.ms-extras .msx-player.on .bars i:nth-child(4) { animation-delay: 0.15s; }
+.ms-extras .msx-player.on .bars i:nth-child(5) { animation-delay: 0.3s; }
+@keyframes msx-eq { 0%, 100% { height: 4px; } 50% { height: 18px; } }
+.ms-extras .msx-top8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+@media (max-width: 680px) { .ms-extras .msx-top8 { grid-template-columns: repeat(2, 1fr); } }
+.ms-extras .msx-friend { text-align: center; font-size: 10px; }
+.ms-extras .msx-friend .fp {
+  height: 74px; border: 1px solid #000; display: flex; align-items: center; justify-content: center;
+  font-size: 32px; background: linear-gradient(135deg, #dce6ff, #f7d9ec); margin-bottom: 3px;
+}
+.ms-extras .msx-friend b { color: #003399; display: block; }
+.ms-extras .msx-comment { display: flex; gap: 8px; padding: 7px 0; border-bottom: 1px dashed #b9c4dc; }
+.ms-extras .msx-comment:last-child { border-bottom: 0; }
+.ms-extras .msx-comment .ca { font-size: 24px; flex: 0 0 auto; }
+.ms-extras .msx-comment .who { color: #003399; font-weight: bold; }
+.ms-extras .msx-comment .when { color: #888; font-size: 9px; }
+.ms-extras .msx-counter {
+  text-align: center; margin: 12px 0 4px; color: #fff;
+  font-family: "Courier New", monospace; font-size: 11px;
+}
+.ms-extras .msx-counter .num {
+  background: #000; color: #0f0; padding: 2px 6px; border: 1px solid #0f0;
+  letter-spacing: 3px; font-weight: bold;
+}
+
+/* sparkle cursor canvas */
+#msx-sparkle { position: fixed; inset: 0; pointer-events: none; z-index: 998; display: none; }
+html.myspace #msx-sparkle { display: block; }
+
+/* honour reduced motion in 2005 too */
+@media (prefers-reduced-motion: reduce) {
+  .ms-extras .msx-player.on .bars i { animation: none; }
+  html.myspace .marquee-track { animation: none !important; }
+  html.myspace #msx-sparkle { display: none; }
+}
