@@ -186,6 +186,8 @@
     entries.forEach(function (entry) {
       if (!entry.isIntersecting) return;
       io.unobserve(entry.target);
+      /* ICE doesn't run in 2005 — MySpace mode keeps plain headings */
+      if (document.documentElement.classList.contains('myspace')) return;
       decode(entry.target, {});
     });
   }, { threshold: 0.4 });

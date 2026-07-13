@@ -41,35 +41,52 @@ html.myspace {
   --ice:        #cc0066;
 }
 
-/* ── ground: tiled glitter background, 2005 body copy ── */
+/* ── ground: full-glitter tiled background, 2005 body copy ── */
 html.myspace body {
-  background-color: #0a1a3f;
+  background-color: #12054a;
   background-image:
-    radial-gradient(circle at 50% 50%, rgba(153,255,0,0.10) 0 2px, transparent 3px),
-    repeating-linear-gradient(45deg, rgba(255,0,153,0.10) 0 10px, rgba(0,51,153,0.10) 10px 20px),
-    linear-gradient(135deg, #1b0f3a, #06183f 40%, #2a0a3a);
-  background-size: 26px 26px, 40px 40px, 100% 100%;
+    radial-gradient(circle at 50% 50%, rgba(255,255,0,0.16) 0 2px, transparent 3px),
+    radial-gradient(circle at 20% 80%, rgba(0,255,255,0.14) 0 2px, transparent 3px),
+    repeating-linear-gradient(45deg, rgba(255,0,153,0.16) 0 12px, rgba(0,204,255,0.12) 12px 24px, rgba(153,255,0,0.12) 24px 36px, rgba(255,204,0,0.12) 36px 48px),
+    linear-gradient(135deg, #2a0a5e, #0a2a6e 35%, #5e0a4a 70%, #0a4a2a);
+  background-size: 28px 28px, 42px 42px, 68px 68px, 100% 100%;
   background-attachment: fixed;
   font-family: Verdana, Tahoma, Geneva, sans-serif;
   color: #000;
 }
-html.myspace body::before, html.myspace body::after { display: none; }
+/* the scanline layer becomes a twinkling star field */
+html.myspace body::before {
+  display: block;
+  background:
+    radial-gradient(circle at 12% 22%, rgba(255,255,255,0.9) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 78% 34%, rgba(255,255,160,0.8) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 42% 68%, rgba(160,255,255,0.8) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 88% 82%, rgba(255,180,255,0.8) 0 1.5px, transparent 3px),
+    radial-gradient(circle at 28% 88%, rgba(255,255,255,0.7) 0 1px, transparent 2.5px);
+  background-size: 260px 260px, 300px 300px, 340px 340px, 280px 280px, 220px 220px;
+  animation: msx-twinkle 1.6s steps(2, end) infinite;
+}
+html.myspace body::after { display: none; }
+@keyframes msx-twinkle { 50% { opacity: 0.35; } }
+@keyframes msx-blink { 50% { opacity: 0; } }
+@keyframes msx-rainbow { to { background-position: 200% 0; } }
 
 /* kill the cyberdeck ambience — this is a different decade */
 html.myspace #rf-particles,
 html.myspace .crt-layer,
 html.myspace .scroll-progress { display: none !important; }
 
-/* ── topbar → MySpace header bar ── */
+/* ── topbar → full rainbow header bar ── */
 html.myspace .topbar {
-  background: #003399; border-bottom: 2px solid #6699cc;
+  background: linear-gradient(90deg, #ff0099, #ff6600, #ffcc00, #33cc33, #0099ff, #9933ff);
+  border-bottom: 3px ridge #fff;
   backdrop-filter: none;
 }
-html.myspace .logo { color: #fff; text-shadow: none; font-family: Verdana; font-size: 13px; }
-html.myspace .logo .blink { background: #ff0099; box-shadow: none; }
-html.myspace .topbar nav { color: #fff; text-transform: none; font-family: Verdana; font-size: 11px; letter-spacing: 0; }
+html.myspace .logo { color: #fff; text-shadow: 1px 1px 0 #000; font-family: "Comic Sans MS", Verdana, cursive; font-size: 13px; }
+html.myspace .logo .blink { background: #ffff00; box-shadow: none; }
+html.myspace .topbar nav { color: #fff; text-transform: none; font-family: Verdana; font-size: 11px; letter-spacing: 0; font-weight: bold; text-shadow: 1px 1px 0 #000; }
 html.myspace .topbar nav a:hover,
-html.myspace .topbar nav a[aria-current="page"] { color: #ffcc00; border-color: #ffcc00; text-shadow: none; }
+html.myspace .topbar nav a[aria-current="page"] { color: #ffff00; border-color: #ffff00; text-shadow: 1px 1px 0 #000; }
 html.myspace .clock { color: #b8ccee; }
 html.myspace .jack-in {
   background: #ffcc00; color: #003399; clip-path: none;
@@ -78,9 +95,10 @@ html.myspace .jack-in {
 html.myspace .nav-hamburger span { background: #fff; }
 html.myspace .nav-overlay { background: rgba(0,51,153,0.97); font-family: Verdana; text-transform: none; }
 
-/* ── HUD strip → guestbook banner ── */
+/* ── HUD strip → candy-stripe guestbook banner ── */
 html.myspace .hud {
-  background: #ffcc00; border: 1px solid #000; border-bottom: 2px solid #000;
+  background: repeating-linear-gradient(45deg, #ffcc00 0 14px, #ff9900 14px 28px);
+  border: 2px ridge #fff; border-bottom: 3px ridge #fff;
   color: #000; font-family: Verdana; text-transform: none; letter-spacing: 0;
   padding: 6px 10px; font-weight: bold;
 }
@@ -92,18 +110,23 @@ html.myspace .blk, html.myspace .sec { padding: 18px 0 6px; }
 html.myspace .v4-hero, html.myspace .hero { min-height: 0; padding: 18px 0 8px; }
 
 html.myspace .sec-h {
-  background: #425c8b; border: 1px solid #000; border-bottom: none;
+  background: linear-gradient(90deg, #ff0099, #9933ff, #0099ff);
+  border: 2px ridge #fff; border-bottom: none;
   padding: 4px 8px; margin-bottom: 0;
 }
 html.myspace .sec-h h2 {
-  color: #fff; font-family: "Trebuchet MS", Verdana, sans-serif;
-  font-size: 12px; letter-spacing: 0; text-transform: none;
+  color: #fff; font-family: "Comic Sans MS", "Trebuchet MS", cursive;
+  font-size: 12.5px; letter-spacing: 0; text-transform: none;
+  text-shadow: 1px 1px 0 #000;
 }
-html.myspace .sec-h .more { color: #ffcc00; font-size: 10px; text-transform: none; letter-spacing: 0; }
+html.myspace .sec-h h2::before { content: '⭐ '; }
+html.myspace .sec-h h2::after { content: ' ⭐'; }
+html.myspace .sec-h .more { color: #ffff00; font-size: 10px; text-transform: none; letter-spacing: 0; font-weight: bold; text-shadow: 1px 1px 0 #000; }
 html.myspace .sec-h + * , html.myspace .sec-h ~ .idx-list, html.myspace .sec-h ~ .uc-list,
 html.myspace .sec-h ~ .tool-list, html.myspace .sec-h ~ .term, html.myspace .sec-h ~ .feat-v4,
 html.myspace .post-list, html.myspace #ucNoResults {
-  background: #fff; border: 1px solid #000; padding: 10px 12px; margin-bottom: 14px;
+  background: linear-gradient(180deg, #ffffff, #ffe9f7 85%, #e9f5ff);
+  border: 3px ridge #ff66cc; padding: 10px 12px; margin-bottom: 14px;
 }
 
 /* text inside white boxes goes 2005 */
@@ -130,13 +153,20 @@ html.myspace .idx-row::before { display: none; }
 html.myspace .tool-glyph { -webkit-text-stroke: 0; color: #6699cc; font-family: "Comic Sans MS", cursive; font-size: 30px; }
 html.myspace .tool-arrow { color: #ff0099; }
 
-/* ── hero → profile name header ── */
+/* ── hero → profile name header, animated rainbow chrome ── */
 html.myspace .v4-hero .v4-h1, html.myspace .hero h1 {
   font-family: "Comic Sans MS", "Trebuchet MS", cursive;
   font-size: clamp(30px, 6vw, 44px); line-height: 1.1;
-  color: #ff0099; text-shadow: 2px 2px 0 #fff;
-  background: #fff; border: 1px solid #000; padding: 10px 14px;
-  animation: none; margin: 8px 0;
+  color: #e6007e; text-shadow: none;
+  background-image:
+    linear-gradient(90deg, #e6007e, #ff6600, #b38f00, #00994d, #0066cc, #9933cc, #e6007e),
+    linear-gradient(#ffffff, #ffffff);
+  background-size: 200% 100%, 100% 100%;
+  background-clip: text, border-box;
+  -webkit-background-clip: text, border-box;
+  -webkit-text-fill-color: transparent;
+  border: 3px ridge #ff66cc; padding: 10px 14px;
+  animation: msx-rainbow 5s linear infinite; margin: 8px 0;
 }
 html.myspace .v4-h1 .ln { display: inline; overflow: visible; }
 html.myspace .v4-h1 .ln > span { display: inline; transform: none !important; }
@@ -170,11 +200,20 @@ html.myspace .stat .val, html.myspace .ribbon-cell .val { color: #cc0066; font-f
 
 /* marquee → blingee banner */
 html.myspace .marquee {
-  background: #000; border: 2px solid #99ff00; opacity: 1;
+  background: #000; border: 4px ridge #ff0099; opacity: 1;
   color: #99ff00; font-family: "Comic Sans MS", cursive; text-transform: none;
 }
 html.myspace .marquee-track { color: #99ff00; }
-html.myspace .marquee-track b { color: #ff0099; }
+html.myspace .marquee-track b { color: #ff66cc; }
+html.myspace .marquee-track span::before { content: '💖 '; }
+
+/* blinking NEW!! badge on the freshest essay */
+html.myspace .idx-list .idx-row:first-child .idx-title::after {
+  content: ' NEW!!';
+  color: #ff0000; font-family: "Comic Sans MS", cursive;
+  font-size: 12px; font-weight: bold; vertical-align: super;
+  animation: msx-blink 0.9s steps(2, end) infinite;
+}
 
 /* terminal → AIM away message */
 html.myspace .term {
@@ -217,8 +256,11 @@ html.myspace .calc-big { color: #cc0066; font-family: "Comic Sans MS", cursive; 
 html.myspace .choice { background: #fff; border: 2px outset #eee; color: #333; font-family: Verdana; }
 html.myspace .choice.selected { background: #ffffcc; border-style: inset; color: #cc0066; box-shadow: none; }
 
-/* ── footer → white box + pink toggle ── */
-html.myspace .footer { background: #fff; border: 1px solid #000; color: #333; font-family: Verdana; margin-top: 20px; padding: 20px 0 12px; }
+/* ── footer → confetti box + glossy pink toggle ── */
+html.myspace .footer {
+  background: linear-gradient(180deg, #ffffff, #e9f2ff 55%, #ffe9f7);
+  border: 4px ridge #ff66cc; color: #333; font-family: Verdana; margin-top: 20px; padding: 20px 0 12px;
+}
 html.myspace .footer-brand-name { color: #ff0099; text-shadow: none; font-family: "Comic Sans MS", cursive; }
 html.myspace .footer-brand-name span { color: #888; }
 html.myspace .footer-col-title { color: #003399; }
@@ -227,10 +269,11 @@ html.myspace .footer-col a:hover { color: #cc0066; text-decoration: underline; }
 html.myspace .footer-bottom { color: #888; text-transform: none; }
 html.myspace .footer-bottom .text-lime { color: #cc0066; }
 html.myspace .ms-toggle {
-  background: #cc0066; color: #fff; border: 2px outset #fff;
+  background: linear-gradient(180deg, #ff66cc, #cc0066); color: #fff; border: 2px outset #ffb3e0;
   font-family: "Comic Sans MS", cursive; font-size: 11px; text-transform: none; letter-spacing: 0;
+  text-shadow: 1px 1px 0 #90004a;
 }
-html.myspace .ms-toggle:hover { background: #a10050; color: #fff; border-color: #fff; }
+html.myspace .ms-toggle:hover { background: linear-gradient(180deg, #cc0066, #a10050); color: #fff; border-color: #fff; }
 html.myspace .ms-toggle:focus-visible { outline: 2px solid #003399; outline-offset: 2px; }
 
 /* kill cyberdeck reveal states so nothing is stuck hidden */
@@ -244,9 +287,13 @@ html.myspace .js-anim .ribbon, html.myspace .js-anim .uc-card {
 html.myspace .ms-extras { display: block; font-family: Verdana; font-size: 11px; color: #000; }
 .ms-extras * { box-sizing: border-box; }
 .ms-extras .msx-network {
-  background: #ffcc00; border: 1px solid #000; text-align: center;
+  background: repeating-linear-gradient(45deg, #ffcc00 0 14px, #ffee66 14px 28px);
+  border: 3px ridge #ff9900; text-align: center;
+  font-family: "Comic Sans MS", cursive;
   font-weight: bold; padding: 5px; margin: 14px 0 8px;
 }
+.ms-extras .msx-network::before { content: '🌟 '; }
+.ms-extras .msx-network::after { content: ' 🌟'; }
 .ms-extras .msx-box { background: #fff; border: 1px solid #000; margin-bottom: 10px; }
 .ms-extras .msx-box > h3 {
   margin: 0; background: #425c8b; color: #fff; font-size: 11px; font-weight: bold;
@@ -261,6 +308,11 @@ html.myspace .ms-extras { display: block; font-family: Verdana; font-size: 11px;
 .ms-extras .msx-player .np { font-family: "Courier New", monospace; font-size: 11px; }
 .ms-extras .msx-player .bars { display: flex; gap: 2px; align-items: flex-end; height: 20px; margin-left: auto; }
 .ms-extras .msx-player .bars i { width: 3px; height: 3px; background: #0f0; }
+.ms-extras .msx-player .bars i:nth-child(1) { background: #ff0099; }
+.ms-extras .msx-player .bars i:nth-child(2) { background: #ff9900; }
+.ms-extras .msx-player .bars i:nth-child(3) { background: #ffff00; }
+.ms-extras .msx-player .bars i:nth-child(4) { background: #33ff33; }
+.ms-extras .msx-player .bars i:nth-child(5) { background: #00ccff; }
 .ms-extras .msx-player.on .bars i { animation: msx-eq 0.8s ease-in-out infinite; }
 .ms-extras .msx-player.on .bars i:nth-child(2) { animation-delay: 0.1s; }
 .ms-extras .msx-player.on .bars i:nth-child(3) { animation-delay: 0.25s; }
@@ -285,9 +337,17 @@ html.myspace .ms-extras { display: block; font-family: Verdana; font-size: 11px;
   font-family: "Courier New", monospace; font-size: 11px;
 }
 .ms-extras .msx-counter .num {
-  background: #000; color: #0f0; padding: 2px 6px; border: 1px solid #0f0;
-  letter-spacing: 3px; font-weight: bold;
+  background: #000; color: #0f0; padding: 3px 8px; border: 2px ridge #0f0;
+  letter-spacing: 4px; font-weight: bold; font-size: 14px;
+  text-shadow: 0 0 6px #0f0;
 }
+
+/* rainbow scrollbar, obviously */
+html.myspace ::-webkit-scrollbar-track { background: #12054a; }
+html.myspace ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff0099, #ff9900, #ffff00, #33cc33, #0099ff, #9933ff);
+}
+html.myspace ::-webkit-scrollbar-thumb:hover { background: #ff0099; }
 
 /* sparkle cursor canvas */
 #msx-sparkle { position: fixed; inset: 0; pointer-events: none; z-index: 998; display: none; }
@@ -298,4 +358,7 @@ html.myspace #msx-sparkle { display: block; }
   .ms-extras .msx-player.on .bars i { animation: none; }
   html.myspace .marquee-track { animation: none !important; }
   html.myspace #msx-sparkle { display: none; }
+  html.myspace body::before { animation: none; }
+  html.myspace .v4-hero .v4-h1, html.myspace .hero h1 { animation: none; }
+  html.myspace .idx-list .idx-row:first-child .idx-title::after { animation: none; }
 }

@@ -129,21 +129,21 @@
   addEventListener('resize', size);
 
   var parts = [];
-  var COLORS = ['#ff0099', '#99ff00', '#00ccff', '#ffff00', '#ffffff'];
+  var COLORS = ['#ff0099', '#99ff00', '#00ccff', '#ffff00', '#ffffff', '#ff6600', '#ff66cc', '#9933ff'];
   var seed = 7;
   function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
 
   var raf = null;
   addEventListener('pointermove', function (e) {
     if (!isOn()) return;
-    for (var i = 0; i < 2; i++) {
+    for (var i = 0; i < 4; i++) {
       parts.push({
         x: e.clientX, y: e.clientY,
         vx: (rnd() - 0.5) * 1.6, vy: (rnd() - 0.5) * 1.6 - 0.4,
         life: 1, c: COLORS[(rnd() * COLORS.length) | 0], s: 1.5 + rnd() * 2.5
       });
     }
-    if (parts.length > 220) parts.splice(0, parts.length - 220);
+    if (parts.length > 320) parts.splice(0, parts.length - 320);
     if (!raf) raf = requestAnimationFrame(draw);
   });
 
